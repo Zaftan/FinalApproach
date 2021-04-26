@@ -1,0 +1,193 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Drawing;
+using GXPEngine.Core;
+
+namespace GXPEngine.Physics
+{
+	//------------------------------------------------------------------------------------------------------------------------
+	//														PhysicsObject
+	//------------------------------------------------------------------------------------------------------------------------
+	/// <summary>
+	/// A class disgined to apply physics on
+	/// </summary>
+	public abstract class PhysicsObject : GameObject
+	{
+		public Vector2 position;
+		public Vector2 vecRotation;
+		public Vector2 velocity;
+		public Vector2 acceleration;
+		public bool moving
+		{
+			get { return velocity.length > 0; }
+		}
+		public Vector2 oldPosition
+		{
+			get { return position - velocity; }
+		}
+		public bool effectedByGravity;
+		public PhysicsObject CollidingWith;
+
+		protected int width
+		{
+			get { return _width; }
+		}
+		protected int height
+		{
+			get { return _height; }
+		}
+		protected EasyDraw draw
+		{
+			get { return _easyDraw; }
+		}
+		protected Level _currentScene
+		{
+			get { return (Level)game.Currentscene; }
+		}
+
+		private int _width;
+		private int _height;
+		private EasyDraw _easyDraw;
+
+		public PhysicsObject(int pWidth, int pHeight, Vector2 pPosition) : base(false)
+		{
+			position = pPosition;
+			vecRotation = Vector2.GetUnitVectorDeg(0);
+
+			if (pWidth <= 0 || pHeight <= 0)
+			{
+				throw new Exception("Dimensions of a Physicsobject cannot be smaller or equal to 0");
+			}
+			else
+			{
+				_width = pWidth;
+				_height = pHeight;
+			}
+
+			UpdateScreenPosition();
+		}
+
+		protected abstract void Draw();
+
+		public void SetColor(Color fillColor)
+		{
+			if (_easyDraw == null)
+			{
+				_easyDraw = new EasyDraw(width, height, false);
+				_easyDraw.SetOrigin(_easyDraw.width / 2, _easyDraw.height / 2);
+
+				AddChild(_easyDraw);
+			}
+
+			_easyDraw.Clear(Color.Transparent);
+			_easyDraw.Fill(fillColor);
+			_easyDraw.Stroke(fillColor);
+			_easyDraw.StrokeWeight(1);
+
+			Draw();
+		}
+
+		protected virtual void UpdateScreenPosition()
+		{
+			x = position.x;
+			y = position.y;
+			rotation = vecRotation.angleDeg;
+		}
+
+		public bool Colliding(PhysicsObject other)
+		{
+			if (other == this)
+			{
+				return false;
+			}
+			else if (other is PhysicsLine)
+			{
+				return Colliding((PhysicsLine)other);
+			}
+			else if (other is PhysicsCircle)
+			{
+				return Colliding((PhysicsCircle)other);
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public abstract bool Colliding(PhysicsLine lineSegment);
+		public abstract bool Colliding(PhysicsCircle circle);
+		/*		public bool Colliding(PhysicsPolygon polygon)
+				{
+					foreach (PhysicsLine line in polygon.lines)
+					{
+						if (Colliding(line))
+						{
+							return true;
+						}
+					}
+
+					foreach (PhysicsCircle point in polygon.points)
+					{
+						if (Colliding(point))
+						{
+							return true;
+						}
+					}
+
+					return false;
+				}*/
+
+		public abstract void Collide(PhysicsObject other);
+/*		{
+			if (other is PhysicsPolygon)
+			{
+				foreach (PhysicsLine line in ((PhysicsPolygon)other).lines)
+				{
+					if (Colliding(line))
+					{
+						Collide(line);
+						return;
+					}
+				}
+
+				foreach (PhysicsCircle point in ((PhysicsPolygon)other).points)
+				{
+					if (Colliding(point))
+					{
+						Collide(point);
+						return;
+					}
+				}
+			}
+		}*/
+
+		public void Step()
+		{
+			UpdateScreenPosition();
+			setAccelleration();
+			applyAcceleration();
+			applyVelocity();
+		}
+
+		protected virtual void applyVelocity()
+		{
+			position += velocity;
+		}
+
+		protected virtual void applyAcceleration()
+		{
+			velocity += acceleration;
+			acceleration.SetXY(0, 0);
+		}
+
+		protected virtual void setAccelleration()
+		{
+			if (effectedByGravity)
+			{
+				acceleration += _currentScene.gravity;
+			}
+		}
+	}
+}
