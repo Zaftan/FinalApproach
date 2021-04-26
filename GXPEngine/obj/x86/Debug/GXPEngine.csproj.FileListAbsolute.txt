@@ -28,3 +28,9 @@ D:\Files\CMGT\Final project\Engine try 1\GXPEngine\obj\x86\Debug\GXPEngine.cspro
 D:\Files\CMGT\Final project\Engine try 1\GXPEngine\obj\x86\Debug\GXPEngine.csproj.CoreCompileInputs.cache
 D:\Files\CMGT\Final project\Engine try 1\GXPEngine\obj\x86\Debug\GXPEngine.exe
 D:\Files\CMGT\Final project\Engine try 1\GXPEngine\obj\x86\Debug\GXPEngine.pdb
+D:\Files\GitHub - code\FinalApproach\GXPEngine\bin\Debug\GXPEngine.exe
+D:\Files\GitHub - code\FinalApproach\GXPEngine\bin\Debug\GXPEngine.pdb
+D:\Files\GitHub - code\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.csprojAssemblyReference.cache
+D:\Files\GitHub - code\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.csproj.CoreCompileInputs.cache
+D:\Files\GitHub - code\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.exe
+D:\Files\GitHub - code\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.pdb

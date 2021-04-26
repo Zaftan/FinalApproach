@@ -13,18 +13,23 @@ class Ball : PhysicsCircle
         effectedByGravity = true;
     }
 
+    public override bool moving
+    {
+        get { return true; }
+    }
+
     public override void Collide(PhysicsObject other)
     {
         base.Collide(other);
 
         if (other is PhysicsLine)
         {
-            velocity.Reflect(((PhysicsLine)other).lineVector.Normal(), 0f);
+            velocity.Reflect(((PhysicsLine)other).lineVector.Normal(), 0.5f);
             //Console.WriteLine(Colliding((PhysicsLine)other));
         }
         else if (other is PhysicsCircle)
         {
-            velocity.Reflect(Vector2.DirectionBetween(position, other.position).Normalized(), 0f);
+            velocity.Reflect(Vector2.DirectionBetween(position, other.position).Normalized(), 0.5f);
         }
     }
 

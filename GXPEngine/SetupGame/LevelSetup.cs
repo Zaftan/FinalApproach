@@ -11,7 +11,7 @@ public class EngineTest : Level
 {
     public EngineTest() : base("EngineTest"/*, name + "Background.png"*/)
     {
-        gravity = new Vector2(0, 0.981f);
+        gravity = new Vector2(0, 2000f);
     }
 
     public override void onLoad()

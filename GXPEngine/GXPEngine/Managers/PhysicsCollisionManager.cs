@@ -20,9 +20,6 @@ namespace GXPEngine.Managers
 		public void Resolve()
 		{
 			moving.Collide(nonMoving);
-
-			//Console.WriteLine(nonMoving.GetType());
-			//nonMoving.Collide(moving);
 		}
 	}
 
@@ -53,23 +50,23 @@ namespace GXPEngine.Managers
 
 		public void Add(PhysicsObject physicsObject)
 		{
-			_allPhysicsObjects.Add(physicsObject);
-
-			physicsObject.Step();
-
 			if (physicsObject.moving)
 			{
 				_movingPhysicsObjects.Add(physicsObject);
+				return;
 			}
+
+			_allPhysicsObjects.Add(physicsObject);
 		}
 		public void Remove(PhysicsObject physicsObject)
 		{
-			_allPhysicsObjects.Remove(physicsObject);
-
 			if (physicsObject.moving)
 			{
 				_movingPhysicsObjects.Remove(physicsObject);
+				return;
 			}
+
+			_allPhysicsObjects.Remove(physicsObject);
 		}
 
 		private void checkAllCollisions()

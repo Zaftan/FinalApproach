@@ -19,7 +19,7 @@ namespace GXPEngine.Physics
 		public Vector2 vecRotation;
 		public Vector2 velocity;
 		public Vector2 acceleration;
-		public bool moving
+		public virtual bool moving
 		{
 			get { return velocity.length > 0; }
 		}
@@ -118,50 +118,7 @@ namespace GXPEngine.Physics
 
 		public abstract bool Colliding(PhysicsLine lineSegment);
 		public abstract bool Colliding(PhysicsCircle circle);
-		/*		public bool Colliding(PhysicsPolygon polygon)
-				{
-					foreach (PhysicsLine line in polygon.lines)
-					{
-						if (Colliding(line))
-						{
-							return true;
-						}
-					}
-
-					foreach (PhysicsCircle point in polygon.points)
-					{
-						if (Colliding(point))
-						{
-							return true;
-						}
-					}
-
-					return false;
-				}*/
-
 		public abstract void Collide(PhysicsObject other);
-/*		{
-			if (other is PhysicsPolygon)
-			{
-				foreach (PhysicsLine line in ((PhysicsPolygon)other).lines)
-				{
-					if (Colliding(line))
-					{
-						Collide(line);
-						return;
-					}
-				}
-
-				foreach (PhysicsCircle point in ((PhysicsPolygon)other).points)
-				{
-					if (Colliding(point))
-					{
-						Collide(point);
-						return;
-					}
-				}
-			}
-		}*/
 
 		public void Step()
 		{
@@ -173,12 +130,13 @@ namespace GXPEngine.Physics
 
 		protected virtual void applyVelocity()
 		{
-			position += velocity;
+			position += velocity * (1f / game.currentFps);
+			//Console.WriteLine(1f / game.currentFps);
 		}
 
 		protected virtual void applyAcceleration()
 		{
-			velocity += acceleration;
+			velocity += acceleration * (1f / game.currentFps);
 			acceleration.SetXY(0, 0);
 		}
 
