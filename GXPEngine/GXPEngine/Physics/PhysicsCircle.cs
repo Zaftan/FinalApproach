@@ -19,22 +19,51 @@ namespace GXPEngine.Physics
             _radius = pRadius;
         }
 
-        public override bool Colliding(PhysicsLine lineSegment)
+        public override bool Colliding(PhysicsLine line)
         {
-            Vector2 _lineToBall = position - lineSegment.start;
-            float ballDistance = _lineToBall.Dot(lineSegment.lineVector.Normal());
+            // get length of the line
+            Vector2 distanceVec = line.lineVector;
+            float len = distanceVec.length;
 
-            if (ballDistance < radius)
+            float dot = (((position.x - line.start.x) * (line.end.x - line.start.x)) + ((position.y - line.start.y) * (line.end.y - line.start.y))) / (len*len);
+
+            Vector2 closest = line.start + dot * (line.end - line.start);
+
+            float d1 = Vector2.Distance(closest, line.start);
+            float d2 = Vector2.Distance(closest, line.end);
+
+            // get the length of the line
+            float lineLen = line.lineVector.length;
+            float buffer = 0.1f;    // higher # = less accurate
+
+            if (!(d1 + d2 >= lineLen - buffer && d1 + d2 <= lineLen + buffer))
             {
-                Vector2 middle = (lineSegment.start + lineSegment.end) * 0.5f;
-                Vector2 middleToBall = position - middle;
-
-                if (middleToBall.length < lineSegment.lineVector.length / 2)
-                {
-                    return true;
-                }
+                return false;
             }
 
+            // get distance to closest point
+            distanceVec = closest - position;
+
+            if (distanceVec.length <= radius)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        bool linePoint(PhysicsLine line, Vector2 point)
+        {
+            float d1 = Vector2.Distance(point, line.start);
+            float d2 = Vector2.Distance(point, line.end);
+
+            // get the length of the line
+            float lineLen = line.lineVector.length;
+            float buffer = 0.1f;    // higher # = less accurate
+
+            if (d1 + d2 >= lineLen - buffer && d1 + d2 <= lineLen + buffer)
+            {
+                return true;
+            }
             return false;
         }
 

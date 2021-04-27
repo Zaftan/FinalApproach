@@ -132,14 +132,6 @@ namespace GXPEngine.Physics
 		public abstract bool Colliding(PhysicsCircle circle);
 		public virtual bool Colliding(PhysicsPolygon poly)
 		{
-			foreach (PhysicsObject point in poly.points)
-			{
-				if (Colliding(point))
-				{
-					return true;
-				}
-			}
-
 			foreach (PhysicsObject line in poly.lines)
 			{
 				if (Colliding(line))

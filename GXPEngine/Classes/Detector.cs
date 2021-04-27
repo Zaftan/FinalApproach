@@ -21,7 +21,7 @@ class Detector : PhysicsCircle
         SetColor(System.Drawing.Color.Red);
     }
 
-    public void Update()
+/*    public void Update()
     {
         UpdateScreenPosition();
         position.SetXY(Input.mouseX, Input.mouseY);
@@ -30,6 +30,6 @@ class Detector : PhysicsCircle
         {
             SetColor(System.Drawing.Color.Blue);
         }
-    }
+    }*/
 }
 

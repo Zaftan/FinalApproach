@@ -50,6 +50,7 @@
     <Compile Include="GXPEngine\Physics\PhysicsObject.cs" />
     <Compile Include="GXPEngine\Physics\PhysicsPolygon.cs" />
     <Compile Include="GXPEngine\Physics\PhysicsRectangle.cs" />
+    <Compile Include="GXPEngine\Physics\PhysicsTriangle.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="GXPEngine\Canvas.cs" />
     <Compile Include="GXPEngine\Game.cs" />

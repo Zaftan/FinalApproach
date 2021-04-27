@@ -6,17 +6,16 @@ using GXPEngine.Core;
 
 namespace GXPEngine.Physics
 {
-    public class PhysicsRectangle : PhysicsPolygon
+    public class PhysicsTriangle : PhysicsPolygon
     {
-        public PhysicsRectangle(int pWidth, int pHeight, Vector2 pPosition) : 
+        public PhysicsTriangle(int pWidth, int pHeight, Vector2 pPosition) :
             base(
             new List<Vector2>()
             {
                 new Vector2(- pWidth / 2, - pHeight / 2),
-                new Vector2(pWidth / 2, - pHeight / 2),
                 new Vector2(pWidth / 2, pHeight / 2),
-                new Vector2(- pWidth / 2,pHeight / 2)
-            }, 
+                new Vector2(0, 0),
+            },
             pPosition)
         {
         }
@@ -24,7 +23,6 @@ namespace GXPEngine.Physics
         protected override void Draw()
         {
             base.Draw();
-            //draw.Rect(0, 0, width * 2, height * 2);
         }
     }
 }

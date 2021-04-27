@@ -10,7 +10,7 @@ using System.Drawing;
 public class EngineTest : Level
 {
 
-    PhysicsRectangle rectangle;
+    PhysicsPolygon rectangle;
 
     public EngineTest() : base("EngineTest"/*, name + "Background.png"*/)
     {
@@ -33,7 +33,7 @@ public class EngineTest : Level
         line3.SetColor(Color.Green);
         AddChild(line3);
 
-        rectangle = new PhysicsRectangle(100, 200, new Vector2(500, 500));
+        rectangle = new PhysicsRectangle(500, 50, new Vector2(500, 500));
         rectangle.vecRotation.angleDeg = 45f;
 
         rectangle.SetColor(Color.Red);
@@ -42,9 +42,7 @@ public class EngineTest : Level
 
     public override void Update()
     {
-        rectangle.vecRotation.angleDeg ++;
-
-
+        rectangle.vecRotation.RotateDegrees(1f);
         if (Input.GetMouseButtonUp(0))
         {
             Ball ball = new Ball(10);
