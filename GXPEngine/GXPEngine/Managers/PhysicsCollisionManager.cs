@@ -3,47 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GXPEngine.Physics;
+using GXPEngine.Core;
 
 namespace GXPEngine.Managers
 {
-	class Collision
-	{
-		PhysicsObject moving;
-		PhysicsObject nonMoving;
-
-		public Collision(PhysicsObject a, PhysicsObject b)
-		{
-			moving = a;
-			nonMoving = b;
-		}
-
-		public void Resolve()
-		{
-			moving.Collide(nonMoving);
-		}
-	}
-
 	public class PhysicsCollisionManager
 	{
         List<PhysicsObject> _movingPhysicsObjects = new List<PhysicsObject>();
 		List<PhysicsObject> _allPhysicsObjects = new List<PhysicsObject>();
 		float collisionCounter;
-		Collision collision;
+		bool collision;
 
 		private void checkCollisions(PhysicsObject physicsObject, List<PhysicsObject> others)
 		{
 			foreach (PhysicsObject other in others)
 			{
 				collisionCounter++;
-				
-/*				if (other is PhysicsPolygon)
+
+				if (DetectCollision(physicsObject, other))
 				{
-					checkCollisions(physicsObject, ((PhysicsPolygon)other).lines);					
-				}*/
-				if (physicsObject.Colliding(other))
-				{
-					collision = new Collision(physicsObject, other);
-					break;
+					if (physicsObject.Colliding(other))
+					{
+						break;
+					}
 				}
 			}
 		}
@@ -58,6 +40,7 @@ namespace GXPEngine.Managers
 
 			_allPhysicsObjects.Add(physicsObject);
 		}
+
 		public void Remove(PhysicsObject physicsObject)
 		{
 			if (physicsObject.moving)
@@ -71,27 +54,30 @@ namespace GXPEngine.Managers
 
 		private void checkAllCollisions()
 		{
+			collision = false;
+
 			foreach (PhysicsObject physicsObject in _movingPhysicsObjects)
 			{
-				collision = null;
-
 				checkCollisions(physicsObject, _allPhysicsObjects);
-
-				if (collision != null)
-				{
-					collision.Resolve();
-				}
 			}
 		}
 
-        internal void Step()
+		public static bool DetectCollision(PhysicsObject a, PhysicsObject b)
+		{
+			float distance = Vector2.Distance(a.position, b.position);
+			float radiusA = new Vector2(a.width, a.height).length/2;
+			float radiusB = new Vector2(b.width, b.height).length/2;
+
+			return distance < (radiusA + radiusB);
+		}
+
+		internal void Step()
         {
 			int i = 1;
 			collisionCounter = 0;
-
 			checkAllCollisions();
 
-			while (collision != null)
+			while (collision)
 			{
 				i++;
 				checkAllCollisions();
@@ -102,7 +88,7 @@ namespace GXPEngine.Managers
 				}
 			}
 
-			//Console.Write("CheckedCollisions: " + collisionCounter + " Moving items: " + _movingPhysicsObjects.Count + " ");
+			//Console.WriteLine("CheckedCollisions: " + collisionCounter + " Moving items: " + _allPhysicsObjects.Count + " ");
 		}
     }
 }

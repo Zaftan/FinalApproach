@@ -9,46 +9,35 @@ namespace GXPEngine.Physics
 {
     public class PhysicsPolygon : PhysicsObject
     {
-        public List<PhysicsObject> points
+        public List<PhysicsCircle> points
+        {
+            get { return createPoints(_positions); }
+        }
+
+        public List<PhysicsLine> lines
+        {
+            get { return createLines(points); }
+        }
+
+        protected List<Vector2> _positions;
+        private List<Vector2> cordinates
         {
             get
             {
-                List<PhysicsObject> outP = _points;
+                List<Vector2> outP = new List<Vector2>();
 
-                foreach (PhysicsCircle point in outP)
+                foreach (PhysicsCircle point in points)
                 {
-                    point.position.RotateAroundDegrees(vecRotation.angleDeg, position);
+                    outP.Add(point.position);
                 }
 
                 return outP;
             }
         }
-        public List<PhysicsObject> lines
+
+        public PhysicsPolygon(List<Vector2> pPositions, Vector2 pPosition) : base(calculateWidth(pPositions), calculateHeight(pPositions), pPosition)
         {
-            get
-            {
-                List <PhysicsObject> outP = new List<PhysicsObject> ();
-                List<PhysicsObject> temp = points;
-
-                for (int i = 0; i < temp.Count - 1; i++)
-                {
-                    outP.Add(new PhysicsLine(temp[i].position, temp[i + 1].position));
-                }
-
-                outP.Add(new PhysicsLine(temp[temp.Count - 1].position, temp[0].position));
-
-                return outP;
-            }
-        }
-        protected List<PhysicsObject> _points;
-
-        public PhysicsPolygon(List<Vector2> pPoints, Vector2 pPosition) : base(calculateWidth(pPoints), calculateHeight(pPoints), pPosition)
-        {
-            _points = createPoints(pPoints);
-        }
-
-        protected PhysicsPolygon(int pWidth, int pHeight, Vector2 pPosition) : base(pWidth, pHeight, pPosition)
-        {
+            _positions = pPositions;
         }
 
         private static int calculateWidth(List<Vector2> pPoints)
@@ -83,14 +72,34 @@ namespace GXPEngine.Physics
             return max - min;
         }
 
-        protected List<PhysicsObject> createPoints ( List<Vector2> positions)
+        protected List<PhysicsCircle> createPoints(List<Vector2> positions)
         {
-            List<PhysicsObject> outP = new List<PhysicsObject>();
+            List<PhysicsCircle> outP = new List<PhysicsCircle>();
 
-            foreach (Vector2 point in positions)
+            foreach (Vector2 pos in positions)
             {
-                outP.Add(new PhysicsCircle(1, point));
+                Vector2 newPos = pos;
+
+                newPos.x += position.x;
+                newPos.y += position.y;
+                newPos.RotateAroundDegrees(vecRotation.angleDeg, position);
+
+                outP.Add(new PhysicsCircle(1, newPos));
             }
+
+            return outP;
+        }
+
+        static protected List<PhysicsLine> createLines(List<PhysicsCircle> points)
+        {
+            List<PhysicsLine> outP = new List<PhysicsLine>();
+
+            for (int i = 0; i < points.Count - 1; i++)
+            {
+                outP.Add(new PhysicsLine(points[i].position, points[i + 1].position));
+            }
+
+            outP.Add(new PhysicsLine(points[points.Count - 1].position, points[0].position));
 
             return outP;
         }
@@ -111,11 +120,10 @@ namespace GXPEngine.Physics
 
         protected override void Draw()
         {
-            foreach (PhysicsLine _line in lines)
+            foreach (PhysicsLine line in lines)
             {
-                _line.SetColor(Color.Blue);
-                Console.WriteLine(_line.lineVector.angleDeg);
-                game.Currentscene.AddChild(_line);
+                line.SetColor(Color.Blue);
+                
             }
         }
     }

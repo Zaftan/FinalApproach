@@ -28,13 +28,12 @@ namespace GXPEngine.Physics
 			get { return position - velocity; }
 		}
 		public bool effectedByGravity;
-		public PhysicsObject CollidingWith;
 
-		protected int width
+		public int width
 		{
 			get { return _width; }
 		}
-		protected int height
+		public int height
 		{
 			get { return _height; }
 		}
@@ -98,26 +97,59 @@ namespace GXPEngine.Physics
 
 		public bool Colliding(PhysicsObject other)
 		{
+			bool outp = false;
+
 			if (other == this)
 			{
 				return false;
 			}
+			else if (other is PhysicsPolygon)
+			{
+				outp = Colliding((PhysicsPolygon)other);
+			}
 			else if (other is PhysicsLine)
 			{
-				return Colliding((PhysicsLine)other);
+				outp = Colliding((PhysicsLine)other);
 			}
 			else if (other is PhysicsCircle)
 			{
-				return Colliding((PhysicsCircle)other);
+				outp = Colliding((PhysicsCircle)other);
 			}
 			else
 			{
 				return false;
 			}
+
+			if (outp)
+			{
+				Collide(other);
+			}
+
+			return outp;
 		}
 
 		public abstract bool Colliding(PhysicsLine lineSegment);
 		public abstract bool Colliding(PhysicsCircle circle);
+		public virtual bool Colliding(PhysicsPolygon poly)
+		{
+			foreach (PhysicsObject point in poly.points)
+			{
+				if (Colliding(point))
+				{
+					return true;
+				}
+			}
+
+			foreach (PhysicsObject line in poly.lines)
+			{
+				if (Colliding(line))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
 		public abstract void Collide(PhysicsObject other);
 
 		public void Step()
@@ -126,6 +158,11 @@ namespace GXPEngine.Physics
 			setAccelleration();
 			applyAcceleration();
 			applyVelocity();
+		}
+
+        public virtual void Update()
+		{
+			Step();
 		}
 
 		protected virtual void applyVelocity()

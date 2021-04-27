@@ -28,17 +28,17 @@ namespace GXPEngine.Managers
             }
         }
 
-        public void setscene(Scene scene)
+        public void SetScene(Scene scene)
         {
-            setscene(scene.name);
+            SetScene(scene.name);
         }
 
-        public void setscene(string scene)
+        public void SetScene(string scene)
         {
-            gotoscene(findscene(scene));
+            gotoScene(findScene(scene));
         }
 
-        private void gotoscene(int nextscene)
+        private void gotoScene(int nextscene)
         {
             if (_currentsceneNumber != nextscene)
             {
@@ -54,7 +54,7 @@ namespace GXPEngine.Managers
             }
         }
 
-        public int findscene(string scene)
+        private int findScene(string scene)
         {
             for (int i = 0; i < _scenes.Count(); i++)
             {
@@ -67,32 +67,37 @@ namespace GXPEngine.Managers
             return _currentsceneNumber;
         }
 
-        public void gotoNextscene()
+        public void GotoNextscene()
         {
             if (_currentsceneNumber < _scenes.Count - 1)
             {
-                gotoscene(_currentsceneNumber + 1);
+                gotoScene(_currentsceneNumber + 1);
             }
         }
 
-        public void gotoPreviousscene()
+        public void GotoPreviousscene()
         {
             if (_previousscene != null)
             {
-                setscene(_previousscene);
+                SetScene(_previousscene);
                 _previousscene = null;
             }
         }
 
-        public Scene getCurrentscene()
+        public Scene GetCurrentscene()
         {
             return _scenes[_currentsceneNumber];
         }
 
-        public void reloadscene()
+        public void Reloadscene()
         {
-            _scenes[_currentsceneNumber].onLeave();
-            _scenes[_currentsceneNumber].onLoad();
+            /*            _scenes[_currentsceneNumber].onLeave();
+                        _scenes[_currentsceneNumber].onLoad();*/
+            Scene temp = new Scene("TEMP");
+            addscene(temp);
+            SetScene("TEMP");
+            GotoPreviousscene();
+            _scenes.Remove(temp);
         }
 
         public void reset()

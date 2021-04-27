@@ -32,10 +32,5 @@ class Ball : PhysicsCircle
             velocity.Reflect(Vector2.DirectionBetween(position, other.position).Normalized(), 0.5f);
         }
     }
-
-    public void Update()
-    {
-        Step();
-    }
 }
 

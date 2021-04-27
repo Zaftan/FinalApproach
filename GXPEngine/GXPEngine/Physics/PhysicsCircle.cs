@@ -54,8 +54,6 @@ namespace GXPEngine.Physics
 
         public override void Collide(PhysicsObject other)
         {
-            //base.Collide(other);
-
             if (other is PhysicsLine)
             {
                 Vector2 _lineVector = ((PhysicsLine)other).lineVector;

@@ -9,6 +9,9 @@ using System.Drawing;
 
 public class EngineTest : Level
 {
+
+    PhysicsRectangle rectangle;
+
     public EngineTest() : base("EngineTest"/*, name + "Background.png"*/)
     {
         gravity = new Vector2(0, 2000f);
@@ -30,8 +33,8 @@ public class EngineTest : Level
         line3.SetColor(Color.Green);
         AddChild(line3);
 
-        PhysicsRectangle rectangle = new PhysicsRectangle(50, 100, new Vector2(width /2 , height/2));
-        rectangle.vecRotation.angleDeg = 90f;
+        rectangle = new PhysicsRectangle(100, 200, new Vector2(500, 500));
+        rectangle.vecRotation.angleDeg = 45f;
 
         rectangle.SetColor(Color.Red);
         AddChild(rectangle);
@@ -39,6 +42,9 @@ public class EngineTest : Level
 
     public override void Update()
     {
+        rectangle.vecRotation.angleDeg ++;
+
+
         if (Input.GetMouseButtonUp(0))
         {
             Ball ball = new Ball(10);
@@ -53,6 +59,11 @@ public class EngineTest : Level
             circle.SetColor(Color.Red);
 
             AddChild(circle);
+        }
+
+        if (Input.GetKeyDown(Key.R))
+        {
+            game.SceneManager.Reloadscene();
         }
     }
 }
