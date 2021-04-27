@@ -7,13 +7,14 @@ using GXPEngine;                                // GXPEngine contains the engine
 public class MyGame : Game
 {
 	public SoundChannel soundChannel;
-	Level level1;
 
-	public MyGame() : base(1920, 1080, false, false)
+	public MyGame() : base(960, 540, false, false)
 	{
 		targetFps = 60;
 
-		_sceneManager.addscene(new EngineTest());
+		_sceneManager.addscene(new menu());
+		_sceneManager.addscene(new settings());
+		//_sceneManager.addscene(new EngineTest());
 	}
 
     void Update()
