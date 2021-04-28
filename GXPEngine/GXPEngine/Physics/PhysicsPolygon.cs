@@ -20,22 +20,13 @@ namespace GXPEngine.Physics
         }
 
         protected List<Vector2> _positions;
-        private List<Vector2> cordinates
-        {
-            get
-            {
-                List<Vector2> outP = new List<Vector2>();
-
-                foreach (PhysicsCircle point in points)
-                {
-                    outP.Add(point.position);
-                }
-
-                return outP;
-            }
-        }
 
         public PhysicsPolygon(List<Vector2> pPositions, Vector2 pPosition) : base(calculateWidth(pPositions), calculateHeight(pPositions), pPosition)
+        {
+            _positions = pPositions;
+        }
+
+        public PhysicsPolygon(List<Vector2> pPositions, int pWidth, int pHeight, Vector2 pPosition) : base(pWidth, pHeight, pPosition)
         {
             _positions = pPositions;
         }
@@ -90,16 +81,16 @@ namespace GXPEngine.Physics
             return outP;
         }
 
-        static protected List<PhysicsLine> createLines(List<PhysicsCircle> points)
+        protected List<PhysicsLine> createLines(List<PhysicsCircle> points)
         {
             List<PhysicsLine> outP = new List<PhysicsLine>();
 
             for (int i = 0; i < points.Count - 1; i++)
             {
-                outP.Add(new PhysicsLine(points[i].position, points[i + 1].position));
+                outP.Add(new PhysicsLine(points[i].position, points[i + 1].position, bouncyness));
             }
 
-            outP.Add(new PhysicsLine(points[points.Count - 1].position, points[0].position));
+            outP.Add(new PhysicsLine(points[points.Count - 1].position, points[0].position, bouncyness));
 
             return outP;
         }

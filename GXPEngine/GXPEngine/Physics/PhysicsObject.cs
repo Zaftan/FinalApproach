@@ -19,6 +19,7 @@ namespace GXPEngine.Physics
 		public Vector2 vecRotation;
 		public Vector2 velocity;
 		public Vector2 acceleration;
+		public float bouncyness = 0.5f;
 		public virtual bool moving
 		{
 			get { return velocity.length > 0; }

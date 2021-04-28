@@ -91,13 +91,8 @@ namespace GXPEngine.Managers
 
         public void Reloadscene()
         {
-            /*            _scenes[_currentsceneNumber].onLeave();
-                        _scenes[_currentsceneNumber].onLoad();*/
-            Scene temp = new Scene("TEMP");
-            addscene(temp);
-            SetScene("TEMP");
-            GotoPreviousscene();
-            _scenes.Remove(temp);
+            _scenes[_currentsceneNumber].onLeave();
+            _scenes[_currentsceneNumber].onLoad();
         }
 
         public void reset()
