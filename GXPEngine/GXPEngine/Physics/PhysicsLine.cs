@@ -19,14 +19,19 @@ namespace GXPEngine.Physics
             get { return start - end; }
         }
 
-        public PhysicsLine(Vector2 pStart, Vector2 pEnd) : base((int)Vector2.Distance(pEnd, pStart), 1, CalculateMiddle(pStart, pEnd))
+        public PhysicsLine(Vector2 pStart, Vector2 pEnd, float pBouncyness = 0f) : base((int)Vector2.Distance(pEnd, pStart), 1, CalculateMiddle(pStart, pEnd))
         {
             start = pStart;
             end = pEnd;
 
+            bouncyness = pBouncyness;
             vecRotation.angleDeg = lineVector.angleDeg;
 
             UpdateScreenPosition();
+        }
+
+        public PhysicsLine(int startX, int startY, int endX, int endY ) : this(new Vector2(startX, startY), new Vector2(endX, endY))
+        { 
         }
 
         private static Vector2 CalculateMiddle(Vector2 _start, Vector2 _end)

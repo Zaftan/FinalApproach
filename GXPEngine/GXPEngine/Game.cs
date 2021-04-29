@@ -18,12 +18,17 @@ namespace GXPEngine
 		private UpdateManager _updateManager;
 		private CollisionManager _collisionManager;
 		private PhysicsCollisionManager _physicsCollisionManager;
-		protected SceneManager _sceneManager;
+		public SceneManager _sceneManager;
 
 		public Scene Currentscene
 		{
-			get { return _sceneManager.getCurrentscene(); }
-			set { _sceneManager.setscene(value); }
+			get { return _sceneManager.GetCurrentscene(); }
+			set { _sceneManager.SetScene(value); }
+		}
+
+		public SceneManager SceneManager
+		{
+			get { return _sceneManager; }
 		}
 
 		/// <summary>
@@ -258,6 +263,11 @@ namespace GXPEngine
 		{
 			_updateManager.Remove(gameObject);
 			_collisionManager.Remove(gameObject);
+
+			if (gameObject is Physics.PhysicsObject)
+			{
+				_physicsCollisionManager.Remove((Physics.PhysicsObject)gameObject);
+			}
 		}
 
 		//------------------------------------------------------------------------------------------------------------------------
