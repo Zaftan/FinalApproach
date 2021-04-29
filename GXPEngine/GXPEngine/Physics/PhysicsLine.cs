@@ -30,6 +30,10 @@ namespace GXPEngine.Physics
             UpdateScreenPosition();
         }
 
+        public PhysicsLine(int startX, int startY, int endX, int endY ) : this(new Vector2(startX, startY), new Vector2(endX, endY))
+        { 
+        }
+
         private static Vector2 CalculateMiddle(Vector2 _start, Vector2 _end)
         {
             Vector2 middle = _end + _start;
