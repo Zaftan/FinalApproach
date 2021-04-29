@@ -45,8 +45,9 @@ public class Mouse : GameObject
 
     public void recieve(Placable placable)
     {
-        if (GetChildren().Count <= 1)
+        if (GetChildren().Count <= 0)
         {
+            placable.SetXY(0, 0);
             AddChild(placable);
         }
     }

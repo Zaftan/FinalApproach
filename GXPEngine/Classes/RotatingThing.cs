@@ -12,14 +12,20 @@ class RotatingThing : Placable
 
     public RotatingThing(int pWidth, int pHeight, int pX, int pY) : base(new Vector2(pX, pY))
     {
-        width = pWidth;
-        height = pHeight;
+        if (width < height)
+        {
+            width = height = pWidth;
+        }
+        else
+        {
+            width = height = pHeight;
+        }
 
         x = pX;
         y = pY;
 
         rotatingThing = new PhysicsRectangle(pWidth, pHeight, new Vector2(pX, pY));
-        rotatingThing.bouncyness = -100f;
+        rotatingThing.bouncyness = 0.5f;
         rotatingThing.SetColor(System.Drawing.Color.Red);
         PhysicsObjects.Add(rotatingThing);
     }
