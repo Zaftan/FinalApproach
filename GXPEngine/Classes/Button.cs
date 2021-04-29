@@ -49,7 +49,7 @@ public class Button : AnimationSprite
     private Canvas overlay;
     protected string text;
 
-    public Button(float inpX, float inpY, string txt) : base("Button.png", 2, 1, 2, false)
+    public Button(float inpX, float inpY, string txt) : base(Settings.ASSET_PATH + "Art/Button.png", 2, 1, 2, false)
     {
         overlay = new Canvas(width, height);
         overlay.SetOrigin(overlay.width / 2, overlay.height / 2);

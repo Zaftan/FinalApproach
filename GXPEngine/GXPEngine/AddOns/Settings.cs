@@ -22,6 +22,8 @@ namespace GXPEngine {
 	/// </summary>
 	class Settings
 	{
+		static public readonly string ASSET_PATH = "../../Assets/";
+
 		// Settings that are related to this class and the parsing process:
 		public static string SettingsFileName = "settings.txt"; // should be in bin/Debug or bin/Release. Use "MySubFolder/settings.txt" for subfolders.
 		public static bool ShowSettingsParsing = false;  // If true, settings parsing progress is printed to console

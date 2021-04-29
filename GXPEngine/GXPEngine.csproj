@@ -52,7 +52,7 @@
     <Compile Include="GXPEngine\Physics\PhysicsPolygon.cs" />
     <Compile Include="GXPEngine\Physics\PhysicsRectangle.cs" />
     <Compile Include="Levels\menu.cs" />
-    <Compile Include="Levels\settings.cs" />
+    <Compile Include="Levels\GameSettings.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="GXPEngine\Canvas.cs" />
     <Compile Include="GXPEngine\Game.cs" />

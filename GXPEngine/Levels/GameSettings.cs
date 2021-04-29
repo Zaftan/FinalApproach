@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using GXPEngine;
 
-public class Settings : Level
+public class GameSettings : Level
 {
-    public Settings() : base("Settings"/*, name + "Background.png"*/)
+    public GameSettings() : base("Settings"/*, name + "Background.png"*/)
     {
         //
     }
