@@ -24,7 +24,7 @@ class RotatingThing : Placable
         x = pX;
         y = pY;
 
-        rotatingThing = new PhysicsRectangle(pWidth, pHeight, new Vector2(pX, pY));
+        rotatingThing = new PhysicsRectangle(pWidth, pHeight, new Vector2(0, 0));
         rotatingThing.bouncyness = 0.5f;
         rotatingThing.SetColor(System.Drawing.Color.Red);
         PhysicsObjects.Add(rotatingThing);

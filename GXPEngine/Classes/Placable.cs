@@ -20,7 +20,7 @@ public abstract class Placable : GameObject
     public Placable(Vector2 pPosition) : base(false)
     {
         PhysicsObjects = new List<PhysicsObject>();
-        position = pPosition;
+        position = oldPos = pPosition;
         Step();
     }
 
@@ -31,7 +31,8 @@ public abstract class Placable : GameObject
         foreach (PhysicsObject physicsObject in PhysicsObjects)
         {
             physicsObject.parent = parent;
-            physicsObject.position.SetXY(x, y);
+            physicsObject.position -= oldPos;
+            physicsObject.position += position;
         }
 
         if (Input.GetMouseButtonDown(0) && IsInside(Input.mouseX, Input.mouseY))

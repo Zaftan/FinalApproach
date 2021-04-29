@@ -39,6 +39,7 @@ public class EngineTest : Level
         rectangle.SetColor(Color.Red);
         AddChild(new RotatingThing(200, 40, 200, 200));
         AddChild(new Mattress(50, 50, 100, 100));
+        AddChild(new Spring(50, 50, 200, 100));
     }
 
     public override void Update()
