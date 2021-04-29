@@ -37,6 +37,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Ball.cs" />
+    <Compile Include="Classes\Button.cs" />
+    <Compile Include="Classes\Detector.cs" />
     <Compile Include="Classes\Matress.cs" />
     <Compile Include="Classes\Mouse.cs" />
     <Compile Include="Classes\Placable.cs" />
@@ -54,6 +56,8 @@
     <Compile Include="GXPEngine\Physics\PhysicsObject.cs" />
     <Compile Include="GXPEngine\Physics\PhysicsPolygon.cs" />
     <Compile Include="GXPEngine\Physics\PhysicsRectangle.cs" />
+    <Compile Include="Levels\menu.cs" />
+    <Compile Include="Levels\GameSettings.cs" />
     <Compile Include="GXPEngine\Physics\PhysicsTriangle.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="GXPEngine\Canvas.cs" />

@@ -18,7 +18,7 @@ namespace GXPEngine
 		private UpdateManager _updateManager;
 		private CollisionManager _collisionManager;
 		private PhysicsCollisionManager _physicsCollisionManager;
-		protected SceneManager _sceneManager;
+		public SceneManager _sceneManager;
 
 		public Scene Currentscene
 		{
