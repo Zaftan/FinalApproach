@@ -36,7 +36,6 @@ public abstract class Placable : GameObject
             physicsObject.parent = parent;
             physicsObject.position += (position - oldPos);
             physicsObject.vecRotation.angleDeg = rotation;
-            Console.WriteLine((vecRotation.angleDeg - oldRotation.angleDeg));
         }
 
         if (Input.GetMouseButtonDown(0) && IsInside(Input.mouseX, Input.mouseY))
