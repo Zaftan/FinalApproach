@@ -10,6 +10,8 @@ public class Mouse : GameObject
     Vector2 position;
     Vector2 oldPosition;
 
+    Placable equipped;
+
     Vector2 direction
     {
         get { return position - oldPosition; }
@@ -25,7 +27,20 @@ public class Mouse : GameObject
         SetXY(Input.mouseX, Input.mouseY);
         position = new Vector2(x, y);
 
-        if (Input.GetMouseButtonUp(0))
+        if (equipped != null)
+        {
+            if (Input.GetKeyDown(Key.A))
+            {
+                equipped.rotation += -45f;
+            }
+
+            if (Input.GetKeyDown(Key.D))
+            {
+                equipped.rotation += 45f;
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0) && equipped != null)
         {
             release();
         }
@@ -33,22 +48,19 @@ public class Mouse : GameObject
 
     private void release()
     {
-        foreach (GameObject child in GetChildren())
-        {
-            if (child is Placable)
-            {
-                ((Placable)child).SetXY(position.x, position.y);
-                game.Currentscene.AddChild(child);
-            }
-        }
+        equipped.SetXY(position.x, position.y);
+        game.Currentscene.AddChild(equipped);
+        equipped = null;
     }
 
     public void recieve(Placable placable)
     {
-        if (GetChildren().Count <= 0)
+        if (equipped == null)
         {
-            placable.SetXY(0, 0);
-            AddChild(placable);
+            equipped = placable;
+
+            equipped.SetXY(0, 0);
+            AddChild(equipped);
         }
     }
 }
