@@ -41,7 +41,7 @@
     <Compile Include="Classes\Mouse.cs" />
     <Compile Include="Classes\Placable.cs" />
     <Compile Include="Classes\Player.cs" />
-    <Compile Include="Classes\RotatingThing.cs" />
+    <Compile Include="Classes\Wall.cs" />
     <Compile Include="Classes\Spring.cs" />
     <Compile Include="GXPEngine\AddOns\Timer.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />

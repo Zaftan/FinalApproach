@@ -17,6 +17,9 @@ public abstract class Placable : GameObject
     Vector2 oldPos;
     Vector2 position;
 
+    Vector2 oldRotation;
+    Vector2 vecRotation;
+
     public Placable(Vector2 pPosition) : base(false)
     {
         PhysicsObjects = new List<PhysicsObject>();
@@ -31,12 +34,13 @@ public abstract class Placable : GameObject
         foreach (PhysicsObject physicsObject in PhysicsObjects)
         {
             physicsObject.parent = parent;
-            physicsObject.position.SetXY(x, y);
+            physicsObject.position += (position - oldPos);
+            physicsObject.vecRotation.angleDeg = rotation;
+            Console.WriteLine((vecRotation.angleDeg - oldRotation.angleDeg));
         }
 
         if (Input.GetMouseButtonDown(0) && IsInside(Input.mouseX, Input.mouseY))
         {
-
             ((MyGame)game).mouse.recieve(this);
         }
 
