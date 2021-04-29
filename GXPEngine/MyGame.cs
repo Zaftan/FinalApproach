@@ -7,18 +7,35 @@ using GXPEngine;                                // GXPEngine contains the engine
 public class MyGame : Game
 {
 	public SoundChannel soundChannel;
-	Level level1;
+	public Mouse mouse;
 
-	public MyGame() : base(1920, 1080, false, false)
+	public MyGame() : base(960, 540, false, false)
 	{
 		targetFps = 60;
 
+		mouse = new Mouse();
+		AddChild(mouse);
+
 		_sceneManager.addscene(new EngineTest());
+
+		_sceneManager.addscene(new Level("Temp"));
+
 	}
 
     void Update()
 	{
-
+		if (Input.GetKeyDown(Key.R))
+		{
+			game.SceneManager.Reloadscene();
+		}
+		if (Input.GetKeyDown(Key.RIGHT))
+		{
+			game.SceneManager.GotoNextscene();
+		}
+		if (Input.GetKeyDown(Key.LEFT))
+		{
+			game.SceneManager.GotoPreviousscene();
+		}
 		//Console.WriteLine("FPS: " + currentFps);
 	}
 

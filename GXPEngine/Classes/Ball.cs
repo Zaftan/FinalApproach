@@ -11,6 +11,7 @@ class Ball : PhysicsCircle
     {
         SetColor(System.Drawing.Color.Blue);
         effectedByGravity = true;
+        bouncyness = 0.5f;
     }
 
     public override bool moving
@@ -22,20 +23,18 @@ class Ball : PhysicsCircle
     {
         base.Collide(other);
 
+        float reflectStrength = other.bouncyness + bouncyness;
+        Console.WriteLine(other.GetType().ToString() + " " + other.bouncyness);
+        if (reflectStrength < 0) reflectStrength = 0;
+
         if (other is PhysicsLine)
         {
-            velocity.Reflect(((PhysicsLine)other).lineVector.Normal(), 0.5f);
-            //Console.WriteLine(Colliding((PhysicsLine)other));
+            velocity.Reflect(((PhysicsLine)other).lineVector.Normal(), reflectStrength);
         }
         else if (other is PhysicsCircle)
         {
-            velocity.Reflect(Vector2.DirectionBetween(position, other.position).Normalized(), 0.5f);
+            velocity.Reflect(Vector2.DirectionBetween(position, other.position).Normalized(), reflectStrength);
         }
-    }
-
-    public void Update()
-    {
-        Step();
     }
 }
 
