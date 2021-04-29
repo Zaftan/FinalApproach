@@ -34,3 +34,9 @@ D:\Files\GitHub - code\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.csprojAss
 D:\Files\GitHub - code\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.csproj.CoreCompileInputs.cache
 D:\Files\GitHub - code\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.exe
 D:\Files\GitHub - code\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.pdb
+D:\Files\GitFork\Final Project\FinalApproach\GXPEngine\bin\Debug\GXPEngine.exe
+D:\Files\GitFork\Final Project\FinalApproach\GXPEngine\bin\Debug\GXPEngine.pdb
+D:\Files\GitFork\Final Project\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.csprojAssemblyReference.cache
+D:\Files\GitFork\Final Project\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.csproj.CoreCompileInputs.cache
+D:\Files\GitFork\Final Project\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.exe
+D:\Files\GitFork\Final Project\FinalApproach\GXPEngine\obj\x86\Debug\GXPEngine.pdb

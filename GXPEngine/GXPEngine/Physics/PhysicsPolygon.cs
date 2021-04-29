@@ -9,46 +9,26 @@ namespace GXPEngine.Physics
 {
     public class PhysicsPolygon : PhysicsObject
     {
-        public List<PhysicsObject> points
+        public List<PhysicsCircle> points
         {
-            get
-            {
-                List<PhysicsObject> outP = _points;
-
-                foreach (PhysicsCircle point in outP)
-                {
-                    point.position.RotateAroundDegrees(vecRotation.angleDeg, position);
-                }
-
-                return outP;
-            }
-        }
-        public List<PhysicsObject> lines
-        {
-            get
-            {
-                List <PhysicsObject> outP = new List<PhysicsObject> ();
-                List<PhysicsObject> temp = points;
-
-                for (int i = 0; i < temp.Count - 1; i++)
-                {
-                    outP.Add(new PhysicsLine(temp[i].position, temp[i + 1].position));
-                }
-
-                outP.Add(new PhysicsLine(temp[temp.Count - 1].position, temp[0].position));
-
-                return outP;
-            }
-        }
-        protected List<PhysicsObject> _points;
-
-        public PhysicsPolygon(List<Vector2> pPoints, Vector2 pPosition) : base(calculateWidth(pPoints), calculateHeight(pPoints), pPosition)
-        {
-            _points = createPoints(pPoints);
+            get { return createPoints(_positions); }
         }
 
-        protected PhysicsPolygon(int pWidth, int pHeight, Vector2 pPosition) : base(pWidth, pHeight, pPosition)
+        public List<PhysicsLine> lines
         {
+            get { return createLines(points); }
+        }
+
+        protected List<Vector2> _positions;
+
+        public PhysicsPolygon(List<Vector2> pPositions, Vector2 pPosition) : base(calculateWidth(pPositions), calculateHeight(pPositions), pPosition)
+        {
+            _positions = pPositions;
+        }
+
+        public PhysicsPolygon(List<Vector2> pPositions, int pWidth, int pHeight, Vector2 pPosition) : base(pWidth, pHeight, pPosition)
+        {
+            _positions = pPositions;
         }
 
         private static int calculateWidth(List<Vector2> pPoints)
@@ -64,7 +44,7 @@ namespace GXPEngine.Physics
                 if (pointX > max) max = pointX;
             }
 
-            return max - min;
+            return max - min +4;
         }
 
         private static int calculateHeight(List<Vector2> pPoints)
@@ -80,17 +60,37 @@ namespace GXPEngine.Physics
                 if (pointY > max) max = pointY;
             }
 
-            return max - min;
+            return max - min + 4;
         }
 
-        protected List<PhysicsObject> createPoints ( List<Vector2> positions)
+        protected List<PhysicsCircle> createPoints(List<Vector2> positions)
         {
-            List<PhysicsObject> outP = new List<PhysicsObject>();
+            List<PhysicsCircle> outP = new List<PhysicsCircle>();
 
-            foreach (Vector2 point in positions)
+            foreach (Vector2 pos in positions)
             {
-                outP.Add(new PhysicsCircle(1, point));
+                Vector2 newPos = pos;
+
+                newPos.x += position.x;
+                newPos.y += position.y;
+                newPos.RotateAroundDegrees(vecRotation.angleDeg, position);
+
+                outP.Add(new PhysicsCircle(1, newPos));
             }
+
+            return outP;
+        }
+
+        protected List<PhysicsLine> createLines(List<PhysicsCircle> points)
+        {
+            List<PhysicsLine> outP = new List<PhysicsLine>();
+
+            for (int i = 0; i < points.Count - 1; i++)
+            {
+                outP.Add(new PhysicsLine(points[i].position, points[i + 1].position, bouncyness));
+            }
+
+            outP.Add(new PhysicsLine(points[points.Count - 1].position, points[0].position, bouncyness));
 
             return outP;
         }
@@ -111,12 +111,14 @@ namespace GXPEngine.Physics
 
         protected override void Draw()
         {
-            foreach (PhysicsLine _line in lines)
+            draw.StrokeWeight(1);
+
+            for (int i = 0; i < _positions.Count - 1; i++)
             {
-                _line.SetColor(Color.Blue);
-                Console.WriteLine(_line.lineVector.angleDeg);
-                game.Currentscene.AddChild(_line);
+               draw.Line(_positions[i].x + width / 2 +1, _positions[i].y + height / 2 + 1, _positions[i + 1].x + width / 2 + 1, _positions[i + 1].y + height / 2 + 1);
             }
+
+            draw.Line(_positions[points.Count - 1].x + width / 2 + 1, points[points.Count - 1].position.y + height / 2 + 1, _positions[0].x + width / 2 + 1, _positions[0].y + height / 2 + 1);
         }
     }
 }

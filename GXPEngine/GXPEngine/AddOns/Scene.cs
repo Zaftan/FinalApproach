@@ -15,7 +15,7 @@ namespace GXPEngine
             get { return _loaded; }
         }
 
-        public Scene(string sceneName) : base(1920, 1080, false)
+        public Scene(string sceneName) : base(960, 540, false)
         {
             name = sceneName;
             x = 0;
@@ -48,7 +48,7 @@ namespace GXPEngine
                 other.LateDestroy();
             }
 
-            LateRemove();
+            Remove();
         }
 
         public string getsceneName()
