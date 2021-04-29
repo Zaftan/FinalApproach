@@ -17,7 +17,7 @@ public class MyGame : Game
 		mouse = new Mouse();
 		AddChild(mouse);
 
-  _sceneManager.addscene(new menu());
+		_sceneManager.addscene(new menu());
 		_sceneManager.addscene(new settings());
 		_sceneManager.addscene(new EngineTest());
 
