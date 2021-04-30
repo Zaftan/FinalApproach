@@ -10,7 +10,7 @@ public class MyGame : Game
 	public int volume = 10;
 	public Mouse mouse;
 
-	public MyGame() : base(960, 540, false, false)
+	public MyGame() : base(1440, 810, false, false)
 	{
 		targetFps = 60;
 
@@ -21,7 +21,6 @@ public class MyGame : Game
 		_sceneManager.addscene(new settings());
 		_sceneManager.addscene(new EngineTest());
 
-		_sceneManager.addscene(new Level("Temp"));
 	}
 
     void Update()

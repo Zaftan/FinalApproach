@@ -39,6 +39,7 @@
     <Compile Include="Classes\Ball.cs" />
     <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Matress.cs" />
+    <Compile Include="Classes\MetalWall.cs" />
     <Compile Include="Classes\Mouse.cs" />
     <Compile Include="Classes\Placable.cs" />
     <Compile Include="Classes\Player.cs" />

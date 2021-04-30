@@ -7,9 +7,10 @@ using GXPEngine.Core;
 using GXPEngine.Physics;
 using System.Drawing;
 
+
+
 public class EngineTest : Level
 {
-
     PhysicsPolygon rectangle;
 
     public EngineTest() : base("EngineTest"/*, name + "Background.png"*/)
@@ -33,21 +34,21 @@ public class EngineTest : Level
         line3.SetColor(Color.Green);
         AddChild(line3);*/
 
-        rectangle = new PhysicsRectangle(200, 40, new Vector2(200, 200));
+/*        rectangle = new PhysicsRectangle(200, 40, new Vector2(200, 200));
         rectangle.vecRotation.angleDeg = 45f;
 
-        rectangle.SetColor(Color.Red);
-        AddChild(new Wall(200, 40, 200, 200));
+        rectangle.SetColor(Color.Red);*/
+        AddChild(new Wall(200, 200, 200));
+        AddChild(new Wall(50, 200, 200));
+        AddChild(new Wall(100, 200, 200));
         //AddChild(new Mattress(50, 50, 100, 100));
-        AddChild(new PhysicsRectangle(200, 40, new Vector2(200, 200)));
+        // AddChild(new PhysicsRectangle(240, 10, new Vector2(200, 200)));
         AddChild(new Mattress(50, 50, 100, 100));
-        AddChild(new Spring(50, 50, 200, 100));
+        AddChild(new Spring(200, 100));
     }
 
     public override void Update()
     {
-        rectangle.vecRotation.RotateDegrees(1f);
-
         if (Input.GetKeyUp(Key.S))
         {
             Ball ball = new Ball(10);
@@ -77,6 +78,8 @@ public class Level : Scene
     public Level(string name) : base(name/*, name + "Background.png"*/)
     {
         myGame = (MyGame)game;
+
+        AddChild(new PhysicsLine(0, height, width, height));
     }
 
     public override void Update()
