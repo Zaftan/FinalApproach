@@ -9,7 +9,6 @@ using System.Drawing;
 
 public class EngineTest : Level
 {
-
     public EngineTest() : base("level1")
     {
         gravity = new Vector2(0, 2000f);
@@ -18,6 +17,7 @@ public class EngineTest : Level
     public override void onLoad()
     {
         base.onLoad();
+
         AddChild(new Wall(150, 50, 350, 50));
         AddChild(new Wall(150, 50, 350, 50));
         AddChild(new Wall(150, 50, 350, 50));

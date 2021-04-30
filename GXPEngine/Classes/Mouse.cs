@@ -31,12 +31,12 @@ public class Mouse : GameObject
         {
             if (Input.GetKeyDown(Key.A))
             {
-                equipped.rotation += -30f;
+                equipped.rotation += -22.5f;
             }
 
             if (Input.GetKeyDown(Key.D))
             {
-                equipped.rotation += 30f;
+                equipped.rotation += 22.5f;
             }
         }
 

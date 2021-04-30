@@ -37,13 +37,19 @@ class Ball : PhysicsCircle
         }
     }
 
+    protected override void applyVelocity()
+    {
+        velocity -= 0.005f * velocity;
+        base.applyVelocity();
+    }
+
     public override void Update()
     {
         base.Update();
 
         if (Input.GetKeyDown(Key.S))
         {
-            this.Destroy();
+            Destroy();
         }
     }
 }
