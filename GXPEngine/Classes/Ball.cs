@@ -24,7 +24,6 @@ class Ball : PhysicsCircle
         base.Collide(other);
 
         float reflectStrength = other.bouncyness + bouncyness;
-        Console.WriteLine(other.GetType().ToString() + " " + other.bouncyness);
         if (reflectStrength < 0) reflectStrength = 0;
 
         if (other is PhysicsLine)

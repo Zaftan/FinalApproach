@@ -17,8 +17,7 @@ public abstract class Placable : GameObject
     Vector2 oldPos;
     Vector2 position;
 
-    Vector2 oldRotation;
-    Vector2 vecRotation;
+    float oldRotation;
 
     public Placable(Vector2 pPosition) : base(false)
     {
@@ -35,7 +34,8 @@ public abstract class Placable : GameObject
         {
             physicsObject.parent = parent;
             physicsObject.position += (position - oldPos);
-            physicsObject.vecRotation.angleDeg = rotation;
+            physicsObject.vecRotation.RotateDegrees(rotation - oldRotation);
+            physicsObject.position.RotateAroundDegrees(rotation - oldRotation, position);
         }
 
         if (Input.GetMouseButtonDown(0) && IsInside(Input.mouseX, Input.mouseY))
@@ -44,6 +44,7 @@ public abstract class Placable : GameObject
         }
 
         oldPos = position;
+        oldRotation = rotation;
     }
 
     protected abstract void Run();

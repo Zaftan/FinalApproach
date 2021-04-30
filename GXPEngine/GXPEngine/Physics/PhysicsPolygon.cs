@@ -44,7 +44,7 @@ namespace GXPEngine.Physics
                 if (pointX > max) max = pointX;
             }
 
-            return max - min +4;
+            return max - min + 4;
         }
 
         private static int calculateHeight(List<Vector2> pPoints)
@@ -115,10 +115,10 @@ namespace GXPEngine.Physics
 
             for (int i = 0; i < _positions.Count - 1; i++)
             {
-               draw.Line(_positions[i].x + width / 2 +1, _positions[i].y + height / 2 + 1, _positions[i + 1].x + width / 2 + 1, _positions[i + 1].y + height / 2 + 1);
+                draw.Line(_positions[i].x + width / 2, _positions[i].y + height / 2, _positions[i + 1].x + width / 2, _positions[i + 1].y + height / 2);
             }
 
-            draw.Line(_positions[points.Count - 1].x + width / 2 + 1, points[points.Count - 1].position.y + height / 2 + 1, _positions[0].x + width / 2 + 1, _positions[0].y + height / 2 + 1);
+            draw.Line(_positions[points.Count - 1].x + width / 2, points[points.Count - 1].position.y + height / 2, _positions[0].x + width / 2, _positions[0].y + height / 2);
         }
     }
 }

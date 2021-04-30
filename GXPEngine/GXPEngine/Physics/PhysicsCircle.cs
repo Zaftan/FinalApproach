@@ -88,7 +88,7 @@ namespace GXPEngine.Physics
                 Vector2 _lineVector = ((PhysicsLine)other).lineVector;
                 Vector2 _lineToBall = position - ((PhysicsLine)other).start;
                 float ballDistance = _lineToBall.Dot(_lineVector.Normal());
-                position = position + (-ballDistance + radius) * _lineVector.Normal();
+                position = position + (-ballDistance + radius + 1) * _lineVector.Normal();
                 return;
             }
             if (other is PhysicsCircle)

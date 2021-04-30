@@ -21,7 +21,7 @@ public class EngineTest : Level
     {
         base.onLoad();
 
-        PhysicsLine line = new PhysicsLine(new Vector2(0, 200), new Vector2(200, 500));
+/*        PhysicsLine line = new PhysicsLine(new Vector2(0, 200), new Vector2(200, 500));
         line.SetColor(Color.Green);
         AddChild(line);
 
@@ -31,7 +31,7 @@ public class EngineTest : Level
 
         PhysicsLine line3 = new PhysicsLine(new Vector2(200, 500), new Vector2(500, 500));
         line3.SetColor(Color.Green);
-        AddChild(line3);
+        AddChild(line3);*/
 
         rectangle = new PhysicsRectangle(200, 40, new Vector2(200, 200));
         rectangle.vecRotation.angleDeg = 45f;
@@ -39,7 +39,7 @@ public class EngineTest : Level
         rectangle.SetColor(Color.Red);
         AddChild(new Wall(200, 40, 200, 200));
         //AddChild(new Mattress(50, 50, 100, 100));
-        //AddChild(new RotatingThing(200, 40, 200, 200));
+        AddChild(new PhysicsRectangle(200, 40, new Vector2(200, 200)));
         AddChild(new Mattress(50, 50, 100, 100));
         AddChild(new Spring(50, 50, 200, 100));
     }
@@ -51,7 +51,7 @@ public class EngineTest : Level
         if (Input.GetKeyUp(Key.S))
         {
             Ball ball = new Ball(10);
-            ball.position = new Vector2(width/2, 0);
+            ball.position = new Vector2(width/2, 20);
 
             AddChild(ball);
         }

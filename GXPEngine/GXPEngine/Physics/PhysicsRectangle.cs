@@ -16,8 +16,12 @@ namespace GXPEngine.Physics
                 new Vector2(pWidth / 2, - pHeight / 2),
                 new Vector2(pWidth / 2, pHeight / 2),
                 new Vector2(- pWidth / 2,pHeight / 2)
-            }, 
-            pPosition)
+            },
+            pWidth, pHeight, pPosition)
+        {
+        }
+
+        public PhysicsRectangle(int pWidth, int pHeight, int pX, int pY) : this(pWidth, pHeight, new Vector2 (pX, pY))
         {
         }
 
