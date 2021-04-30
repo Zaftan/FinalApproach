@@ -15,10 +15,10 @@ public class MyGame : Game
 		targetFps = 60;
 
 		mouse = new Mouse();
-		AddChild(mouse);
+		AddChildAt(mouse, 100);
 
-        _sceneManager.addscene(new menu());
-		_sceneManager.addscene(new settings());
+        //_sceneManager.addscene(new menu());
+		//_sceneManager.addscene(new settings());
 		_sceneManager.addscene(new EngineTest());
 
 	}

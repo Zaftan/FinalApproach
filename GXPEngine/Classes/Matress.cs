@@ -21,7 +21,7 @@ public class Mattress : Placable
         matress = new PhysicsRectangle(pWidth, pHeight, new Vector2(0, 0));
 
         matress.bouncyness = -100;
-        matress.SetColor(System.Drawing.Color.Beige);
+        matress.SetColor(System.Drawing.Color.Green);
         PhysicsObjects.Add(matress);
     }
 
