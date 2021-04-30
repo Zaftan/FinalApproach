@@ -30,10 +30,10 @@ public class Spring : Placable
         right.SetColor(System.Drawing.Color.Green);
         PhysicsObjects.Add(right);
 
-        /*        spring = new PhysicsRectangle(width - 4, height, 0,0);
-                spring.bouncyness = 0.6f;
-                spring.SetColor(System.Drawing.Color.Red);
-                PhysicsObjects.Add(spring);*/
+        spring = new PhysicsRectangle(width - 4, height, 0, 0);
+        spring.bouncyness = 0.6f;
+        spring.SetColor(System.Drawing.Color.Red);
+        PhysicsObjects.Add(spring);
     }
 
     protected override void Run()

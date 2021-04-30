@@ -34,7 +34,7 @@ class LvSwtchButton : Button
     {
         if (nextLevel != null)
         {
-            game._sceneManager.setscene(nextLevel);
+            game._sceneManager.SetScene(nextLevel);
         }
         else
         {

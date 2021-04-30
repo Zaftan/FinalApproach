@@ -8,7 +8,7 @@ using GXPEngine.Physics;
 
 class Wall : Placable
 {
-    private PhysicsRectangle collider;
+    private PhysicsRectangle body;
 
     public Wall(int pWidth, int pHeight, int pX, int pY) : base(new Vector2(pX, pY))
     {
@@ -24,9 +24,9 @@ class Wall : Placable
         x = pX;
         y = pY;
 
-        collider = new PhysicsRectangle(pWidth, pHeight, new Vector2(0, 0));
-        collider.SetColor(System.Drawing.Color.Red);
-        PhysicsObjects.Add(collider);
+        body = new PhysicsRectangle(pWidth, pHeight, new Vector2(0, 0));
+        body.SetColor(System.Drawing.Color.Red);
+        PhysicsObjects.Add(body);
     }
 
     protected override void Run()
