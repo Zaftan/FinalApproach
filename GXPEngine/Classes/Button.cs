@@ -43,6 +43,22 @@ class LvSwtchButton : Button
     }
 }
 
+public class ControlButton : Button
+{
+    protected string message;
+
+    public ControlButton(float inpX, float inpY, string txt, string action) : base(inpX, inpY, txt)
+    {
+        message = action;
+    }
+
+    protected override void click()
+    {
+        base.click();
+        parent.recieveMessage(message);
+    }
+}
+
 
 public class Button : AnimationSprite
 {

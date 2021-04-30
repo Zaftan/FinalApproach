@@ -7,7 +7,7 @@ using GXPEngine;                                // GXPEngine contains the engine
 public class MyGame : Game
 {
 	public SoundChannel soundChannel;
-	public int volume = 10;
+	private settings sc;
 	public Mouse mouse;
 
 	public MyGame() : base(960, 540, false, false)
@@ -22,6 +22,7 @@ public class MyGame : Game
 		_sceneManager.addscene(new EngineTest());
 
 		_sceneManager.addscene(new Level("Temp"));
+		sc = new settings();
 	}
 
     void Update()
@@ -41,7 +42,7 @@ public class MyGame : Game
 		}
 
 		//Console.WriteLine("FPS: " + currentFps);
-		soundChannel = new Sound(".mp3").Play(false, 0, volume, 0);
+		soundChannel = new Sound(".mp3").Play(false, 0, sc.volume, 0);
 	}
 
 	static void Main()							// Main() is the first method that's called when the program is run

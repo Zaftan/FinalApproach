@@ -21,19 +21,53 @@ public class menu : Scene
 
 public class settings : Scene
 {
+    public int volume = 10;
+
     public settings() : base("Settings"/*, name + "Background.png"*/) { }
+
+    Font funt = new Font("Arial", 25);
 
     public override void onLoad()
     {   
         base.onLoad();
-        Button buttVolDown = new Button(300, 200, "<");
-        AddChild(buttVolDown);
-        Font funt = new Font("Arial", 25);
-        graphics.DrawString("volume", funt, Brushes.Violet, 300, 100);
-        //graphics.DrawString(volume.ToString(), funt, Brushes.Violet, 400, 200);
-        AddChild(new Button(500, 200, ">"));
+        AddChild(new ControlButton(300, 200, "<", "-"));
+        AddChild(new ControlButton(500, 200, ">", "+"));
         AddChild(new LvSwtchButton(400, 400, "Back", "Menu"));
+    }
+    public override void Update()
+    {
+        graphics.Clear(Color.Empty);
+        graphics.DrawString("volume", funt, Brushes.Violet, 300, 100);
+        graphics.DrawString(volume.ToString(), funt, Brushes.Violet, 400, 200);
+    }
 
+    public override void recieveMessage(string message)
+    {
+        if(!(volume < 0) || (volume > 10))
+        {
+            if(volume == 0)
+            {
+                //
+            }
+            else
+            {
+                if(message == "-")
+                {
+                    volume--;
+                }
+            }
+            if (volume == 10)
+            {
+                //
+            }
+            else
+            {
+                if (message == "+")
+                {
+                    volume++;
+                }
+            }
+        }
     }
 }
 
