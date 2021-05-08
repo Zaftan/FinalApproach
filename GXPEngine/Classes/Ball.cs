@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using GXPEngine.Physics;
 using GXPEngine.Core;
+using GXPEngine;
 
 class Ball : PhysicsCircle
 {
@@ -33,6 +34,22 @@ class Ball : PhysicsCircle
         else if (other is PhysicsCircle)
         {
             velocity.Reflect(Vector2.DirectionBetween(position, other.position).Normalized(), reflectStrength);
+        }
+    }
+
+    protected override void applyVelocity()
+    {
+        velocity -= 0.005f * velocity;
+        base.applyVelocity();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if (Input.GetKeyDown(Key.S))
+        {
+            Destroy();
         }
     }
 }

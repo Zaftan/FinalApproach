@@ -7,13 +7,9 @@ using GXPEngine.Core;
 using GXPEngine.Physics;
 using System.Drawing;
 
-
-
 public class EngineTest : Level
 {
-    PhysicsPolygon rectangle;
-
-    public EngineTest() : base("EngineTest"/*, name + "Background.png"*/)
+    public EngineTest() : base("level1")
     {
         gravity = new Vector2(0, 2000f);
     }
@@ -22,29 +18,50 @@ public class EngineTest : Level
     {
         base.onLoad();
 
-/*        PhysicsLine line = new PhysicsLine(new Vector2(0, 200), new Vector2(200, 500));
-        line.SetColor(Color.Green);
-        AddChild(line);
+        AddChild(new Wall(150, 50, 350, 50));
+        AddChild(new Wall(150, 50, 350, 50));
+        AddChild(new Wall(150, 50, 350, 50));
+        AddChild(new Wall(150, 50, 350, 50));
+        AddChild(new Wall(150, 50, 350, 50));
+        AddChild(new Wall(150, 50, 350, 50));
+        AddChild(new Wall(150, 50, 350, 50));
+        AddChild(new Wall(150, 50, 350, 50));
 
-        PhysicsLine line2 = new PhysicsLine(new Vector2(500, 500), new Vector2(800, 200));
-        line2.SetColor(Color.Green);
-        AddChild(line2);
+        AddChild(new Spring(550, 50));
+        AddChild(new Spring(550, 50));
+        AddChild(new Spring(550, 50));
+        AddChild(new Spring(550, 50));
+        AddChild(new Spring(550, 50));
+        AddChild(new Spring(550, 50));
+        AddChild(new Spring(550, 50));
+        AddChild(new Spring(550, 50));
 
-        PhysicsLine line3 = new PhysicsLine(new Vector2(200, 500), new Vector2(500, 500));
-        line3.SetColor(Color.Green);
-        AddChild(line3);*/
+        AddChild(new Mattress(150, 50, 750, 50));
+        AddChild(new Mattress(150, 50, 750, 50));
+        AddChild(new Mattress(150, 50, 750, 50));
+        AddChild(new Mattress(150, 50, 750, 50));
+        AddChild(new Mattress(150, 50, 750, 50));
+        AddChild(new Mattress(150, 50, 750, 50));
+        AddChild(new Mattress(150, 50, 750, 50));
+        AddChild(new Mattress(150, 50, 750, 50));
 
-/*        rectangle = new PhysicsRectangle(200, 40, new Vector2(200, 200));
-        rectangle.vecRotation.angleDeg = 45f;
+        AddChild(new MetalWall(3, 215, 550));
 
-        rectangle.SetColor(Color.Red);*/
-        AddChild(new Wall(200, 200, 200));
-        AddChild(new Wall(50, 200, 200));
-        AddChild(new Wall(100, 200, 200));
-        //AddChild(new Mattress(50, 50, 100, 100));
-        // AddChild(new PhysicsRectangle(240, 10, new Vector2(200, 200)));
-        AddChild(new Mattress(50, 50, 100, 100));
-        AddChild(new Spring(200, 100));
+        AddChild(new MetalWall(2, 530, 650));
+
+        AddChild(new MetalWall(3, 730, 600));
+        AddChild(new MetalWall(2, 730, 600, -90));
+        AddChild(new MetalWall(1, 1115, 600, -90));
+        AddChild(new MetalWall(2, 1215, 500));
+
+        AddChild(new MetalWall(2, 530, 398, 90));
+        AddChild(new MetalWall(1, 530, 398));
+
+        AddChild(new MetalWall(2, 755, 125));
+        AddChild(new MetalWall(2, 965, 125));
+
+        AddChild(new MetalWall(1, 1215, 277));
+        AddChild(new MetalWall(2, 1215, 300, -90));
     }
 
     public override void Update()
@@ -52,7 +69,7 @@ public class EngineTest : Level
         if (Input.GetKeyUp(Key.S))
         {
             Ball ball = new Ball(10);
-            ball.position = new Vector2(width/2, 20);
+            ball.position = new Vector2(80, 200);
 
             AddChild(ball);
         }
@@ -75,11 +92,14 @@ public class Level : Scene
 
     protected MyGame myGame;
 
-    public Level(string name) : base(name/*, name + "Background.png"*/)
+    public Level(string name) : base(name, Settings.ASSET_PATH + "Art/" + name + "Background.png")
     {
         myGame = (MyGame)game;
 
         AddChild(new PhysicsLine(0, height, width, height));
+        AddChild(new PhysicsLine(0, 0, 0, height));
+        AddChild(new PhysicsLine(width, height, width, 0));
+        AddChild(new PhysicsLine(width, 120, 0, 120));
     }
 
     public override void Update()

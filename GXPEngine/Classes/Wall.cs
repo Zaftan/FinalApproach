@@ -10,15 +10,17 @@ class Wall : Placable
 {
     private PhysicsRectangle rect;
 
-    public Wall(int length, int pX, int pY) : base(new Vector2(pX, pY))
+    public Wall(int pWidth, int pHeight, int pX, int pY) : base(new Vector2(pX, pY))
     {
-        build(length);
+        //build(length);
+        width = pWidth;
+        height = pHeight;
 
-        x = pX + width/2;
-        y = pY + height/2;
+        x = pX;
+        y = pY;
 
-        rect = new PhysicsRectangle(width, height, new Vector2(width/2, height/2));
-        //rect.SetColor(System.Drawing.Color.Red);
+        rect = new PhysicsRectangle(width, height, new Vector2(0, 0));
+        rect.SetColor(System.Drawing.Color.Red);
         PhysicsObjects.Add(rect);
     }
 

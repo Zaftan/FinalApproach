@@ -61,10 +61,10 @@ public abstract class Placable : GameObject
 
     private bool IsInside(int pX, int pY)
     {
-        int rx = (int)x - width;
-        int ry = (int)y - height;
-        int rw = (int)width * 2;
-        int rh = (int)height * 2;
+        int rx = (int)x - width/2;
+        int ry = (int)y - height/2;
+        int rw = (int)width;
+        int rh = (int)height;
 
         if (pX >= rx &&         // right of the left edge AND
         pX <= rx + rw &&    // left of the right edge AND
