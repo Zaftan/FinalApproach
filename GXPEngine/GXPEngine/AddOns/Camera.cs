@@ -59,9 +59,9 @@ namespace GXPEngine {
 			normalY = setY;
 		}
 
-		public void Shake() 
+		public void Shake(float sec = 0.5f) 
 		{
-			_shakeTimer.Start();
+			_shakeTimer.Start(sec);
 		}
 	}
 }

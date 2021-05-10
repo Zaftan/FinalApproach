@@ -40,28 +40,12 @@ public class EngineTest : Level
 
     public override void Update()
     {
-        if (Input.GetKeyUp(Key.S))
-        {
-            Ball ball = new Ball(10);
-            ball.position = new Vector2(80, 200);
-
-            AddChild(ball);
-        }
-
-        if (Input.GetMouseButtonUp(2))
-        {
-            PhysicsCircle circle = new PhysicsCircle(10, new Vector2(Input.mouseX, Input.mouseY));
-            circle.SetColor(Color.Red);
-
-            AddChild(circle);
-        }
     }
 }
 
 public class Level : Scene 
 {
-    protected Camera mainCam;
-    public Player player;
+    public Camera mainCam;
     public Vector2 gravity;
 
     protected MyGame myGame;
@@ -69,15 +53,6 @@ public class Level : Scene
     public Level(string name) : base(name, Settings.ASSET_PATH + "Art/" + name + "Background.png")
     {
         myGame = (MyGame)game;
-
-        AddChild(new PhysicsLine(0, height, width, height));
-        AddChild(new PhysicsLine(0, 0, 0, height));
-        AddChild(new PhysicsLine(width, height, width, 0));
-        AddChild(new PhysicsLine(width, 120, 0, 120));
-
-        AddChild(new PlankButton(350, 50));
-        AddChild(new SpringButton(550, 50));
-        AddChild(new PillowButton(750, 50));
     }
 
     public override void Update()
@@ -88,8 +63,20 @@ public class Level : Scene
     {
         base.onLoad();
 
-        player = new Player();
-        AddChild(player);
+        mainCam = new Camera(0, 0, width, height);
+        AddChild(mainCam);
+
+        AddChild(new PhysicsLine(0, height - 70, width, height - 70));
+        AddChild(new PhysicsLine(0, height + 65, width, height + 65));
+        AddChild(new PhysicsLine(0, 0, 0, height));
+        AddChild(new PhysicsLine(width, height, width, 0));
+        AddChild(new PhysicsLine(width, 120, 0, 120));
+
+        AddChild(new PlankButton(350, 50));
+        AddChild(new SpringButton(550, 50));
+        AddChild(new PillowButton(750, 50));
+
+        AddChild(new Cannon(80, 186));
     }
 
     public override void onLeave()

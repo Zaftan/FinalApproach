@@ -8,6 +8,7 @@ using GXPEngine;
 
 public class Pillow : Placable
 {
+
     public Pillow() : base(new Vector2(0, 0))
     {
         Sprite body = new Sprite(Settings.ASSET_PATH + "Art/pillow.png", false, false);

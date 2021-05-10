@@ -23,6 +23,9 @@ class Plank : Placable
         PhysicsRectangle rect = new PhysicsRectangle(width, height, new Vector2(0, 0));
         //rect.SetColor(System.Drawing.Color.Red);
         PhysicsObjects.Add(rect);
+
+        rect = new PhysicsRectangle(width - 10, height - 10, new Vector2(0, 0));
+        PhysicsObjects.Add(rect);
     }
 
     void build(int length)

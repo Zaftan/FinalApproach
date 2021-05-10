@@ -34,6 +34,14 @@ class Timer : GameObject
         active = true;
     }
 
+    public void Start(float maxSecs)
+    {
+        done = false;
+        miniSeconds = 0;
+        maxSeconds = maxSecs;
+        active = true;
+    }
+
     public void Stop()
     {
         miniSeconds = 0;

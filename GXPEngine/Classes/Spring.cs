@@ -29,8 +29,11 @@ public class Spring : Placable
         PhysicsObjects.Add(right);
 
         spring = new PhysicsRectangle(width - 4, height, 0, 0);
-        spring.bouncyness = 0.65f;
+        spring.bouncyness = 0.60f;
         //spring.SetColor(System.Drawing.Color.Red);
+        PhysicsRectangle spring2 = new PhysicsRectangle(width - 14, height - 10, 0, 0);
+        spring2.bouncyness = 0.60f;
+        //PhysicsObjects.Add(spring2);
         PhysicsObjects.Add(spring);
     }
 
