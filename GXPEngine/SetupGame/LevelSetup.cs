@@ -62,6 +62,10 @@ public class EngineTest : Level
 
         AddChild(new MetalWall(1, 1215, 277));
         AddChild(new MetalWall(2, 1215, 300, -90));
+
+        AddChild(new Destroyer(20, 260, 360, 135));
+
+        AddChild(new Destroyer(20, 180, 925, 585, -90));
     }
 
     public override void Update()

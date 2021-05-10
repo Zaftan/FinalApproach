@@ -20,6 +20,8 @@ namespace GXPEngine.Physics
 		public Vector2 velocity;
 		public Vector2 acceleration;
 		public float bouncyness = 0.0f;
+		public bool trigger = false;
+
 		public virtual bool moving
 		{
 			get { return velocity.length > 0; }
@@ -123,7 +125,14 @@ namespace GXPEngine.Physics
 
 			if (outp)
 			{
-				Collide(other);
+				if (other.trigger)
+				{
+					other.Collide(this);
+				}
+				else
+				{
+					Collide(other);
+				}
 			}
 
 			return outp;

@@ -87,10 +87,10 @@ namespace GXPEngine.Physics
 
             for (int i = 0; i < points.Count - 1; i++)
             {
-                outP.Add(new PhysicsLine(points[i].position, points[i + 1].position, bouncyness));
+                outP.Add(new PhysicsLine(points[i].position, points[i + 1].position, bouncyness, trigger));
             }
 
-            outP.Add(new PhysicsLine(points[points.Count - 1].position, points[0].position, bouncyness));
+            outP.Add(new PhysicsLine(points[points.Count - 1].position, points[0].position, bouncyness, trigger));
 
             return outP;
         }
