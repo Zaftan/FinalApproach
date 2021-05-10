@@ -66,6 +66,8 @@ public class EngineTest : Level
         AddChild(new Destroyer(20, 260, 360, 135));
 
         AddChild(new Destroyer(20, 180, 925, 585, -90));
+
+        AddChild(new Objective(125, 125, 1375, 750, "settings"));
     }
 
     public override void Update()

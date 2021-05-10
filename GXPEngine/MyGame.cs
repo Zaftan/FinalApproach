@@ -18,9 +18,9 @@ public class MyGame : Game
 		AddChildAt(mouse, 100);
 
         //_sceneManager.addscene(new menu());
-		//_sceneManager.addscene(new settings());
-		_sceneManager.addscene(new EngineTest());
-		_sceneManager.addscene(new Level("Temp"));
+
+        _sceneManager.addscene(new EngineTest());
+		_sceneManager.addscene(new settings());
 		sc = new settings();
 	}
 
