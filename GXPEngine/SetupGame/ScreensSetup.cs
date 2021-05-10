@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using GXPEngine;
+using GXPEngine.Managers;
 
 public class menu : Scene
 {
@@ -15,25 +16,63 @@ public class menu : Scene
     public override void onLoad()
     {
         base.onLoad();
-        AddChild(new LvSwtchButton(100, 100, "To Settings", "Settings"));
+        AddChild(new LvSwtchButton(100, 100, "", new settings(), "Options.png"));
     }
 }
 
 public class settings : Scene
 {
-    public settings() : base("Settings"/*, name + "Background.png"*/) { }
+    public int volume = 10;
+
+    public settings() : base("Settings") { }
+
+    Font funt = new Font("Arial", 25);
 
     public override void onLoad()
     {   
         base.onLoad();
-        Button buttVolDown = new Button(300, 200, "<");
-        AddChild(buttVolDown);
-        Font funt = new Font("Arial", 25);
-        graphics.DrawString("volume", funt, Brushes.Violet, 300, 100);
-        //graphics.DrawString(volume.ToString(), funt, Brushes.Violet, 400, 200);
-        AddChild(new Button(500, 200, ">"));
-        AddChild(new LvSwtchButton(400, 400, "Back", "Menu"));
+        Sprite sprite = new Sprite(Settings.ASSET_PATH + "Art/Music.png");
+        sprite.x = 75;
+        sprite.y = 75;
+        AddChild(sprite);
+        AddChild(new ControlButton(200, 225, "<", "-", "Minus.png"));
+        AddChild(new ControlButton(700, 225, ">", "+", "Plus.png"));
+        AddChild(new LvSwtchButton(400, 400, "", new menu(), "Back.png"));
+    }
 
+    public override void Update()
+    {
+        graphics.Clear(Color.Empty);
+        graphics.DrawString(volume.ToString(), funt, Brushes.White, 400, 225);
+    }
+
+    public override void recieveMessage(string message)
+    {
+        if(!(volume < 0) || (volume > 10))
+        {
+            if(volume == 0)
+            {
+                //
+            }
+            else
+            {
+                if(message == "-")
+                {
+                    volume--;
+                }
+            }
+            if (volume == 10)
+            {
+                //
+            }
+            else
+            {
+                if (message == "+")
+                {
+                    volume++;
+                }
+            }
+        }
     }
 }
 
