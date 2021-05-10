@@ -20,14 +20,11 @@ public class EngineTest : Level
 
         AddChild(new MetalWall(3, 215, 550));
 
-
-
         AddChild(new MetalWall(3, 730, 600));
         AddChild(new MetalWall(2, 730, 600, -90));
         AddChild(new MetalWall(1, 1135, 600, -90));
         AddChild(new MetalWall(2, 1215, 500));
         AddChild(new Destroyer(915, 587, -90));
-
 
         AddChild(new MetalWall(2, 540, 650));
         AddChild(new MetalWall(2, 538, 360, 90));

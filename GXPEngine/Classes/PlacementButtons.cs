@@ -36,13 +36,14 @@ public class PlankButton : PlacementButtons
 
     protected override void click()
     {
+        Console.WriteLine("CLICK");
         ((MyGame)game).mouse.recieve(new Plank());
     }
 }
 
 public abstract class PlacementButtons : Button
 {
-    protected PlacementButtons(float inpX, float inpY, string path) : base(inpX, inpY, "", path + ".png")
+    protected PlacementButtons(float inpX, float inpY, string path) : base(inpX, inpY, "", path + ".png", 2)
     {
         
     }
