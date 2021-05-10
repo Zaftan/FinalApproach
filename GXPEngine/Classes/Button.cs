@@ -14,13 +14,13 @@ class LvSwtchButton : Button
         set { nextLevel = value; }
     }
 
-    public LvSwtchButton(float inpX, float inpY, string txt, Level nextLevelInp) : base(inpX, inpY, txt)
+    public LvSwtchButton(float inpX, float inpY, string txt, Scene nextLevelInp, string path) : base(inpX, inpY, txt, path)
     {
         nextLevel = nextLevelInp.name;
         text = nextLevelInp.name;
     }
 
-    public LvSwtchButton(float inpX, float inpY, string txt, string nextLevelInp) : base(inpX, inpY, txt)
+    public LvSwtchButton(float inpX, float inpY, string txt, string nextLevelInp, string path) : base(inpX, inpY, txt, path)
     {
         nextLevel = nextLevelInp;
         text = nextLevelInp;
@@ -47,7 +47,7 @@ public class ControlButton : Button
 {
     protected string message;
 
-    public ControlButton(float inpX, float inpY, string txt, string action) : base(inpX, inpY, txt)
+    public ControlButton(float inpX, float inpY, string txt, string action, string path) : base(inpX, inpY, txt, path)
     {
         message = action;
     }
@@ -65,11 +65,11 @@ public class Button : AnimationSprite
     private Canvas overlay;
     protected string text;
 
-    public Button(float inpX, float inpY, string txt) : base(Settings.ASSET_PATH + "Art/Button.png", 2, 1, 2, false)
+    public Button(float inpX, float inpY, string txt, string path = "button.png") : base(Settings.ASSET_PATH + "Art/" + path, 1, 1, 1, false)
     {
-        overlay = new Canvas(width, height);
-        overlay.SetOrigin(overlay.width / 2, overlay.height / 2);
-        AddChild(overlay);
+        //overlay = new Canvas(width, height);
+        //overlay.SetOrigin(overlay.width / 2, overlay.height / 2);
+        //AddChild(overlay);
 
         x = inpX;
         y = inpY;
@@ -85,14 +85,14 @@ public class Button : AnimationSprite
     public void Update()
     {
         var _newFont = new Font("Pangolin", 15);
-        overlay.graphics.Clear(Color.Empty);
-        overlay.graphics.DrawString(text, _newFont, Brushes.White, 90, 50);
+        //overlay.graphics.Clear(Color.Empty);
+        //overlay.graphics.DrawString(text, _newFont, Brushes.White, 90, 50);
 
         if (HitTestPoint(Input.mouseX, Input.mouseY))
         {
             SetFrame(1);
-            overlay.y = 0;
-            overlay.x = 0;
+            //overlay.y = 0;
+            //overlay.x = 0;
 
             if (Input.GetMouseButtonUp(0))
             {
@@ -102,8 +102,8 @@ public class Button : AnimationSprite
         else
         {
             SetFrame(0);
-            overlay.y = -3;
-            overlay.x = 1;
+            //overlay.y = -3;
+            //overlay.x = 1;
         }
     }
 }
