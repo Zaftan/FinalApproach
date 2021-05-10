@@ -12,8 +12,6 @@ public abstract class Placable : GameObject
     public int width = 0;
     public int height = 0;
 
-    private bool movable = true;
-
     Vector2 oldPos;
     Vector2 position;
 

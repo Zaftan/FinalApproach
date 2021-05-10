@@ -61,7 +61,7 @@ namespace GXPEngine {
 
 		public void Shake() 
 		{
-			_shakeTimer.start();
+			_shakeTimer.Start();
 		}
 	}
 }

@@ -38,6 +38,8 @@
   <ItemGroup>
     <Compile Include="Classes\Ball.cs" />
     <Compile Include="Classes\Button.cs" />
+    <Compile Include="Classes\Destroyer.cs" />
+    <Compile Include="Classes\Laser.cs" />
     <Compile Include="Classes\Matress.cs" />
     <Compile Include="Classes\MetalWall.cs" />
     <Compile Include="Classes\Mouse.cs" />
