@@ -7,34 +7,24 @@ using GXPEngine;
 
 public class Spring : Placable
 {
-    private PhysicsRectangle spring;
-    private PhysicsRectangle right;
-    private PhysicsRectangle left;
+    AnimationSprite body;
+    PhysicsRectangle spring;
 
-    private AnimationSprite body;
-
-    public Spring(int pX, int pY) : base(new GXPEngine.Core.Vector2(pX, pY))
+    public Spring() : base(new GXPEngine.Core.Vector2(0, 0))
     {
-        body = new AnimationSprite(Settings.ASSET_PATH + "Art/spring.png", 1, 1, 1, false, false);
-        width = body.width/2;
-        height = body.height/2;
-        body.SetOrigin(body.width /2, body.height /2);
-        body.scale = 0.5f;
+        body = new AnimationSprite(Settings.ASSET_PATH + "Art/spring.png", 6, 2, 12, false, false);
+        width = body.width;
+        height = body.height;
+        body.SetOrigin(body.width / 2, body.height / 2);
 
         AddChild(body);
 
-        SetXY(pX, pY);
-
-        left = new PhysicsRectangle(2, height, -width / 2, 0);
+        PhysicsRectangle left = new PhysicsRectangle(2, height, -width / 2, 0);
         //left.SetColor(System.Drawing.Color.Green);
         left.vecRotation.angleDeg = 180f;
         PhysicsObjects.Add(left);
 
-        /*      bottem = new PhysicsLine(- width / 2, height, width / 2, height);
-                bottem.SetColor(System.Drawing.Color.Green);
-                PhysicsObjects.Add(bottem);*/
-
-        right = new PhysicsRectangle(2, height, width / 2, 0);
+        PhysicsRectangle right = new PhysicsRectangle(2, height, width / 2, 0);
         //right.SetColor(System.Drawing.Color.Pink);
         PhysicsObjects.Add(right);
 

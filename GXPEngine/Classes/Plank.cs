@@ -6,21 +6,22 @@ using GXPEngine;
 using GXPEngine.Core;
 using GXPEngine.Physics;
 
-class Wall : Placable
+class Plank : Placable
 {
-    private PhysicsRectangle rect;
+    private Sprite body;
 
-    public Wall(int pWidth, int pHeight, int pX, int pY) : base(new Vector2(pX, pY))
+    public Plank() : base(new Vector2(0, 0))
     {
         //build(length);
-        width = pWidth;
-        height = pHeight;
+        Sprite body = new Sprite(Settings.ASSET_PATH + "Art/plank.png", false, false);
+        width = body.width;
+        height = body.height;
+        body.SetOrigin(body.width / 2, body.height / 2);
 
-        x = pX;
-        y = pY;
+        AddChild(body);
 
-        rect = new PhysicsRectangle(width, height, new Vector2(0, 0));
-        rect.SetColor(System.Drawing.Color.Red);
+        PhysicsRectangle rect = new PhysicsRectangle(width, height, new Vector2(0, 0));
+        //rect.SetColor(System.Drawing.Color.Red);
         PhysicsObjects.Add(rect);
     }
 

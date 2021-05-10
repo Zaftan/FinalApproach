@@ -18,54 +18,27 @@ public class EngineTest : Level
     {
         base.onLoad();
 
-        AddChild(new Wall(150, 50, 350, 50));
-        AddChild(new Wall(150, 50, 350, 50));
-        AddChild(new Wall(150, 50, 350, 50));
-        AddChild(new Wall(150, 50, 350, 50));
-        AddChild(new Wall(150, 50, 350, 50));
-        AddChild(new Wall(150, 50, 350, 50));
-        AddChild(new Wall(150, 50, 350, 50));
-        AddChild(new Wall(150, 50, 350, 50));
-
-        AddChild(new Spring(550, 50));
-        AddChild(new Spring(550, 50));
-        AddChild(new Spring(550, 50));
-        AddChild(new Spring(550, 50));
-        AddChild(new Spring(550, 50));
-        AddChild(new Spring(550, 50));
-        AddChild(new Spring(550, 50));
-        AddChild(new Spring(550, 50));
-
-        AddChild(new Mattress(150, 50, 750, 50));
-        AddChild(new Mattress(150, 50, 750, 50));
-        AddChild(new Mattress(150, 50, 750, 50));
-        AddChild(new Mattress(150, 50, 750, 50));
-        AddChild(new Mattress(150, 50, 750, 50));
-        AddChild(new Mattress(150, 50, 750, 50));
-        AddChild(new Mattress(150, 50, 750, 50));
-        AddChild(new Mattress(150, 50, 750, 50));
-
         AddChild(new MetalWall(3, 215, 550));
 
-        AddChild(new MetalWall(2, 530, 650));
+
 
         AddChild(new MetalWall(3, 730, 600));
         AddChild(new MetalWall(2, 730, 600, -90));
-        AddChild(new MetalWall(1, 1115, 600, -90));
+        AddChild(new MetalWall(1, 1135, 600, -90));
         AddChild(new MetalWall(2, 1215, 500));
+        AddChild(new Destroyer(915, 587, -90));
 
-        AddChild(new MetalWall(2, 530, 398, 90));
-        AddChild(new MetalWall(1, 530, 398));
+
+        AddChild(new MetalWall(2, 540, 650));
+        AddChild(new MetalWall(2, 538, 360, 90));
+        AddChild(new MetalWall(1, 538, 360));
+        AddChild(new Destroyer(360, 125));
 
         AddChild(new MetalWall(2, 755, 125));
         AddChild(new MetalWall(2, 965, 125));
 
         AddChild(new MetalWall(1, 1215, 277));
         AddChild(new MetalWall(2, 1215, 300, -90));
-
-        AddChild(new Destroyer(20, 260, 360, 135));
-
-        AddChild(new Destroyer(20, 180, 925, 585, -90));
     }
 
     public override void Update()
@@ -104,6 +77,10 @@ public class Level : Scene
         AddChild(new PhysicsLine(0, 0, 0, height));
         AddChild(new PhysicsLine(width, height, width, 0));
         AddChild(new PhysicsLine(width, 120, 0, 120));
+
+        AddChild(new PlankButton(350, 50));
+        AddChild(new SpringButton(550, 50));
+        AddChild(new PillowButton(750, 50));
     }
 
     public override void Update()

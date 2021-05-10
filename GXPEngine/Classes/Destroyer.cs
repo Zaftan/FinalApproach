@@ -7,6 +7,8 @@ using GXPEngine.Physics;
 
 class Destroyer : GameObject
 {
+    AnimationSprite body;
+
     Timer laserDelay;
     bool on;
     Laser laser;
@@ -17,11 +19,11 @@ class Destroyer : GameObject
     {
         on = true;
 
-        laser = new Laser(width, height, (int)x, height / 2 + (int)y);
+        laser = new Laser(width, height - (width*2), (int)x, height / 2 + (int)y);
         laser.position.RotateAroundDegrees(rotation, new GXPEngine.Core.Vector2(x, y));
         laser.vecRotation.RotateDegrees(rotation);
         game.Currentscene.AddChild(laser);
-
+        body.SetFrame(34);
         laserDelay.Start();
     }
     private void Off()
@@ -29,27 +31,33 @@ class Destroyer : GameObject
         on = false;
         laser.LateRemove();
         laserDelay.Start();
+        body.SetFrame(0);
     }
 
-    public Destroyer(int width, int height, int x, int y, float pRotation = 0) : base()
+    public Destroyer(int x, int y, float pRotation = 0) : base()
     {
+        body = new AnimationSprite(Settings.ASSET_PATH + "Art/LaserSpriteSheet.png", 5, 7, 35, false, false);
+
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
-        this.rotation = pRotation;
+        width = body.width;
+        height = body.height;
+        rotation = pRotation;
+
+        body.SetXY(-width/2, 0);
+        AddChild(body);
 
         laserDelay = new Timer(4f);
         AddChild(laserDelay);
 
-        PhysicsRectangle side = new PhysicsRectangle(width, width, x, y);
+        PhysicsRectangle side = new PhysicsRectangle(width, width, x, y + width/2);
         side.position.RotateAroundDegrees(rotation, new GXPEngine.Core.Vector2(x, y));
-        side.SetColor(System.Drawing.Color.Gray);
+        //side.SetColor(System.Drawing.Color.Gray);
         game.Currentscene.AddChild(side);
 
-        side = new PhysicsRectangle(width, width, x, height + y);
+        side = new PhysicsRectangle(width, width, x, height + y - width / 2);
         side.position.RotateAroundDegrees(rotation, new GXPEngine.Core.Vector2(x, y));
-        side.SetColor(System.Drawing.Color.Gray);
+        //side.SetColor(System.Drawing.Color.Gray);
         game.Currentscene.AddChild(side);
 
         On();

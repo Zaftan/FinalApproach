@@ -40,13 +40,14 @@
     <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Destroyer.cs" />
     <Compile Include="Classes\Laser.cs" />
-    <Compile Include="Classes\Matress.cs" />
+    <Compile Include="Classes\Pillow.cs" />
     <Compile Include="Classes\MetalWall.cs" />
     <Compile Include="Classes\Mouse.cs" />
     <Compile Include="Classes\Placable.cs" />
+    <Compile Include="Classes\PlacementButtons.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Spring.cs" />
-    <Compile Include="Classes\Wall.cs" />
+    <Compile Include="Classes\Plank.cs" />
     <Compile Include="GXPEngine\AddOns\Timer.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\Scene.cs" />
