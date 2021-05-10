@@ -20,7 +20,6 @@ public class MyGame : Game
         //_sceneManager.addscene(new menu());
 		//_sceneManager.addscene(new settings());
 		_sceneManager.addscene(new EngineTest());
-		_sceneManager.addscene(new Level("Temp"));
 		sc = new settings();
 	}
 

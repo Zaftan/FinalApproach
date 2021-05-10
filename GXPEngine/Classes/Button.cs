@@ -65,7 +65,7 @@ public class Button : AnimationSprite
     private Canvas overlay;
     protected string text;
 
-    public Button(float inpX, float inpY, string txt, string path = "button.png") : base(Settings.ASSET_PATH + "Art/" + path, 1, 1, 1, false)
+    public Button(float inpX, float inpY, string txt, string path = "button.png", int cols = 1) : base(Settings.ASSET_PATH + "Art/" + path, cols, 1, cols, false)
     {
         //overlay = new Canvas(width, height);
         //overlay.SetOrigin(overlay.width / 2, overlay.height / 2);
@@ -84,7 +84,7 @@ public class Button : AnimationSprite
 
     public void Update()
     {
-        var _newFont = new Font("Pangolin", 15);
+        //var _newFont = new Font("Pangolin", 15);
         //overlay.graphics.Clear(Color.Empty);
         //overlay.graphics.DrawString(text, _newFont, Brushes.White, 90, 50);
 
@@ -94,7 +94,7 @@ public class Button : AnimationSprite
             //overlay.y = 0;
             //overlay.x = 0;
 
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 click();
             }

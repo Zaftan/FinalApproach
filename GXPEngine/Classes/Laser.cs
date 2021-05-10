@@ -9,7 +9,7 @@ public class Laser : PhysicsRectangle
     public Laser (int width, int height, int x, int y) : base(width, height, x, y) 
     {
         trigger = true;
-        SetColor(System.Drawing.Color.Red);
+        //SetColor(System.Drawing.Color.Red);
     }
 
     public override void Collide(PhysicsObject other)

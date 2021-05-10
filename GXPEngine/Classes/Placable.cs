@@ -40,9 +40,18 @@ public abstract class Placable : GameObject
         {
             ((MyGame)game).mouse.recieve(this);
         }
-
         oldPos = position;
         oldRotation = rotation;
+    }
+
+    public override void Destroy()
+    {
+        base.Destroy();
+
+        foreach (PhysicsObject physicsObject in PhysicsObjects)
+        {
+            physicsObject.Destroy();
+        }
     }
 
     protected abstract void Run();
