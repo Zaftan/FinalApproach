@@ -19,7 +19,9 @@ namespace GXPEngine.Physics
 		public Vector2 vecRotation;
 		public Vector2 velocity;
 		public Vector2 acceleration;
-		public float bouncyness = 0.5f;
+		public float bouncyness = 0.0f;
+		public bool trigger = false;
+
 		public virtual bool moving
 		{
 			get { return velocity.length > 0; }
@@ -47,8 +49,8 @@ namespace GXPEngine.Physics
 			get { return (Level)game.Currentscene; }
 		}
 
-		private int _width;
-		private int _height;
+		protected int _width;
+		protected int _height;
 		private EasyDraw _easyDraw;
 
 		public PhysicsObject(int pWidth, int pHeight, Vector2 pPosition) : base(false)
@@ -123,7 +125,14 @@ namespace GXPEngine.Physics
 
 			if (outp)
 			{
-				Collide(other);
+				if (other.trigger)
+				{
+					other.Collide(this);
+				}
+				else
+				{
+					Collide(other);
+				}
 			}
 
 			return outp;

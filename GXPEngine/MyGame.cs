@@ -10,17 +10,16 @@ public class MyGame : Game
 	private settings sc;
 	public Mouse mouse;
 
-	public MyGame() : base(960, 540, false, false)
+	public MyGame() : base(1440, 810, false, false)
 	{
 		targetFps = 60;
 
 		mouse = new Mouse();
-		AddChild(mouse);
+		AddChildAt(mouse, 100);
 
-        _sceneManager.addscene(new menu());
-		_sceneManager.addscene(new settings());
+        //_sceneManager.addscene(new menu());
+		//_sceneManager.addscene(new settings());
 		_sceneManager.addscene(new EngineTest());
-
 		_sceneManager.addscene(new Level("Temp"));
 		sc = new settings();
 	}
