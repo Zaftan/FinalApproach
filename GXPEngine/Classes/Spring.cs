@@ -8,7 +8,6 @@ using GXPEngine;
 public class Spring : Placable
 {
     AnimationSprite body;
-    PhysicsRectangle spring;
 
     public Spring() : base(new GXPEngine.Core.Vector2(0, 0))
     {
@@ -16,6 +15,7 @@ public class Spring : Placable
         width = body.width;
         height = body.height;
         body.SetOrigin(body.width / 2, body.height / 2);
+        body.SetCycle(0, 12, 0);
 
         AddChild(body);
 
@@ -28,16 +28,27 @@ public class Spring : Placable
         //right.SetColor(System.Drawing.Color.Pink);
         PhysicsObjects.Add(right);
 
-        spring = new PhysicsRectangle(width - 4, height, 0, 0);
-        spring.bouncyness = 0.60f;
+        mainCollider = new PhysicsRectangle(width - 4, height + 5, 0, 0);
+        mainCollider.bouncyness = 0.60f;
         //spring.SetColor(System.Drawing.Color.Red);
         PhysicsRectangle spring2 = new PhysicsRectangle(width - 14, height - 10, 0, 0);
         spring2.bouncyness = 0.60f;
         //PhysicsObjects.Add(spring2);
-        PhysicsObjects.Add(spring);
+        PhysicsObjects.Add(mainCollider);
+    }
+
+    protected override void Collide()
+    {
+        body.SetFrame(1);
     }
 
     protected override void Run()
     {
+        base.Run();
+
+        if (body.currentFrame > 0)
+        {
+            body.Animate();
+        }
     }
 }

@@ -41,12 +41,12 @@ class Ball : PhysicsCircle
 
     protected override void applyVelocity()
     {
-        if (velocity.length > 1800f)
+        if (velocity.length > 1500f)
         {
-             velocity.length = 1800f;
+             velocity.length = 1500f;
         }
 
-        Console.WriteLine(velocity.length);
+        //Console.WriteLine(velocity.length);
         //velocity -= 0.007f * velocity;
         base.applyVelocity();
     }

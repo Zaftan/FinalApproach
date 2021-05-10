@@ -8,8 +8,6 @@ using GXPEngine.Physics;
 
 class Plank : Placable
 {
-    private Sprite body;
-
     public Plank() : base(new Vector2(0, 0))
     {
         //build(length);
@@ -20,12 +18,12 @@ class Plank : Placable
 
         AddChild(body);
 
-        PhysicsRectangle rect = new PhysicsRectangle(width, height, new Vector2(0, 0));
+        mainCollider= new PhysicsRectangle(width, height, new Vector2(0, 0));
         //rect.SetColor(System.Drawing.Color.Red);
-        PhysicsObjects.Add(rect);
+        PhysicsObjects.Add(mainCollider);
 
-        rect = new PhysicsRectangle(width - 10, height - 10, new Vector2(0, 0));
-        PhysicsObjects.Add(rect);
+        mainCollider = new PhysicsRectangle(width - 10, height - 10, new Vector2(0, 0));
+        PhysicsObjects.Add(mainCollider);
     }
 
     void build(int length)
@@ -48,7 +46,15 @@ class Plank : Placable
         }
     }
 
+    protected override void Collide()
+    {
+
+    }
+
     protected override void Run()
     {
+        base.Run();
+
+
     }
 }

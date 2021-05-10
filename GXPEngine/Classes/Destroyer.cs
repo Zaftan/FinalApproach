@@ -67,14 +67,13 @@ class Destroyer : GameObject
     void Update()
     {
         
-        if (body.currentFrame == 19)
+        if (body.currentFrame == 18)
         {
             On();
         }
         else if (body.currentFrame > 0)
         {
             body.Animate();
-            Console.WriteLine(body.currentFrame);
         }
         
         if (laserDelay.done && (body.currentFrame > 19 || body.currentFrame == 0))

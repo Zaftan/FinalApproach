@@ -125,13 +125,11 @@ namespace GXPEngine.Physics
 
 			if (outp)
 			{
-				if (other.trigger)
+				other.Collide(this);
+
+				if (!other.trigger)
 				{
-					other.Collide(this);
-				}
-				else
-				{
-					Collide(other);
+					 Collide(other);
 				}
 			}
 

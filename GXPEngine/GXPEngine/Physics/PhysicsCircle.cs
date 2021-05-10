@@ -58,7 +58,7 @@ namespace GXPEngine.Physics
 
             // get the length of the line
             float lineLen = line.lineVector.length;
-            float buffer = 0.1f;    // higher # = less accurate
+            float buffer = 0.3f;    // higher # = less accurate
 
             if (d1 + d2 >= lineLen - buffer && d1 + d2 <= lineLen + buffer)
             {
@@ -88,7 +88,7 @@ namespace GXPEngine.Physics
                 Vector2 _lineVector = ((PhysicsLine)other).lineVector;
                 Vector2 _lineToBall = position - ((PhysicsLine)other).start;
                 float ballDistance = _lineToBall.Dot(_lineVector.Normal());
-                position = position + (-ballDistance + radius + 1) * _lineVector.Normal();
+                position = position + (-ballDistance + radius) * _lineVector.Normal();
                 return;
             }
             if (other is PhysicsCircle)

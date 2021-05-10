@@ -6,16 +6,18 @@ using GXPEngine;
 using GXPEngine.Core;
 using GXPEngine.Physics;
 
-public class Cannon : GameObject
+public class Cannon : Sprite
 {
     AnimationSprite body;
 
-    public Cannon(int pX, int pY) : base(false)
+    public Cannon(int pX, int pY) : base(Settings.ASSET_PATH + "Art/Cannonbacksprite.png", true, false)
     {
         x = pX;
         y = pY;
 
-        body = new AnimationSprite(Settings.ASSET_PATH + "Art/LaucherSheet.png", 10, 4, 38, false, false);
+        SetOrigin(width / 2, height / 2);
+
+        body = new AnimationSprite(Settings.ASSET_PATH + "Art/LaucherSheet2.png", 10, 4, 38, false, false);
         body.SetOrigin(body.width/2, body.height/2);
         body.SetCycle(0, 37, 1);
 
@@ -33,7 +35,7 @@ public class Cannon : GameObject
             Ball ball = new Ball(10);
             ball.position = new Vector2(x, y);
             ball.velocity = new Vector2(0, 1500f);
-            game.Currentscene.AddChildAt(ball, 1);
+            game.Currentscene.AddChildAt(ball, 100);
 
             ((Level)game.Currentscene).mainCam.Shake();
 
