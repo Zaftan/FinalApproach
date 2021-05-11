@@ -60,7 +60,7 @@ class Quokka : PhysicsCircle
 
     public override void Update()
     {
-        if (velocity.length > 100f)
+        if (velocity.length > 200f)
         {
             body.rotation = velocity.angleDeg + 90;
         }

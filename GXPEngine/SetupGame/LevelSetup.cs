@@ -14,7 +14,9 @@ public class Level3 : Level
         name = "level3";
         gravity = new Vector2(0, 500f);
         resistance = 0f;
-
+        window.SetXY(420f, 165f);
+        //window.scale = 1.07f;
+        window.SetCycle(0, 14, 6);
         plankStock = 5;
         springStock = 4;
         pillowStock = 3;
@@ -59,23 +61,31 @@ public class Level2 : Level
     {
         name = "level2";
         gravity = new Vector2(0, 2000f);
-        resistance = 0.01f;
-
+        resistance = 0.006f;
+        window.SetXY(102f, 200f);
+        window.scale = 1.07f;
         plankStock = springStock = pillowStock = 5;
     }
 
     public override void onLoad()
     {
+        
         AddChild(new Spikes(30, 0, height - 30));
 
-        AddChild(new MetalWall(3, 250, 75));
-        AddChild(new MetalWall(3, 250, 550));
+        AddChild(new MetalWall(3, 295, 75));
+        AddChild(new MetalWall(3, 295, 550));
+        AddChild(new MetalWall(2, 540, 340));
         AddChild(new Laser(300, 350, -90));
-        AddChild(new MetalWall(2, 600, 350));
+        AddChild(new Star(430, 200));
+
         AddChild(new MetalWall(3, 800, 75));
         AddChild(new MetalWall(3, 800, 550));
-        AddChild(new MetalWall(3, 1200, 400, -90));
-        AddChild(new Laser(1175, 150));
+        AddChild(new Star(900, 650));
+
+        AddChild(new MetalWall(3, 1160, 428, -90));
+        AddChild(new MetalWall(1, 1160, 80));
+        AddChild(new Laser(1173, 170));
+        AddChild(new Star(1300, 300));
 
         base.onLoad();
     }
@@ -86,8 +96,9 @@ public class Level1 : Level
     public Level1() : base("level1")
     {
         gravity = new Vector2(0, 2000f);
-        resistance = 0.01f;
-
+        resistance = 0.006f;
+        window.SetXY(102f, 200f);
+        window.scale = 1.07f;
         plankStock = springStock = pillowStock = 1;
     }
 
@@ -96,9 +107,14 @@ public class Level1 : Level
         AddChild(new PhysicsLine(0, height, width, height));
         AddChild(new PhysicsLine(0, height + 10, width, height + 10));
 
+        AddChild(new Star(80, 400));
+
         AddChild(new MetalWall(2, 400, 125));
+        AddChild(new Star(412, 400));
         AddChild(new MetalWall(4, 400, 500));
+
         AddChild(new MetalWall(4, 800, 125));
+        AddChild(new Star(812, 600));
         AddChild(new MetalWall(3, 800, 700));
 
         base.onLoad();
@@ -119,16 +135,22 @@ public class Level : Scene
     protected int springStock;
     protected int pillowStock;
 
+    protected AnimationSprite window;
+
+    //private Sprite background;
     private AnimationSprite starBar;
 
     public Level(string name) : base(name, Settings.ASSET_PATH + "Art/" + name + "Background.png")
     {
         myGame = (MyGame)game;
+        window = new AnimationSprite(Settings.ASSET_PATH + "Art/" + name + "Window.png", 7, 2, 14, false, false);
+        window.SetCycle(0, 14, 60);
     }
 
     public override void Update()
     {
         starBar.SetFrame(stars);
+        window.Animate();
 
         if (Input.GetKeyDown(Key.S))
         {
@@ -153,6 +175,8 @@ public class Level : Scene
     {
         base.onLoad();
 
+        game.AddChildAt(window, 0);
+
         AddChild(new PhysicsLine(0, 0, 0, height));
         AddChild(new PhysicsLine(width, height, width, 0));
         AddChild(new PhysicsLine(width, 120, 0, 120));
@@ -173,6 +197,12 @@ public class Level : Scene
 
         mainCam = new Camera(0, 0, width, height);
         AddChild(mainCam);
+    }
+
+    public override void onLeave()
+    {
+        base.onLeave();
+        window.Remove();
     }
 
     public override void recieveMessage(string message)
