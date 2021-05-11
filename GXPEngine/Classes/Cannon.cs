@@ -32,7 +32,6 @@ public class Cannon : Sprite
 
     void Update()
     {
-
         if (body.currentFrame > 0 && body.currentFrame <= 35)
         {
             body.Animate();
@@ -48,14 +47,13 @@ public class Cannon : Sprite
         if (Input.GetKeyUp(Key.S))
         {
             quokka = new Quokka(15);
-            
+
             quokka.velocity = new Vector2(0, 1500f);
             game.Currentscene.AddChildAt(quokka, 10);
 
             body.SetFrame(1);
+            new Sound(Settings.ASSET_PATH + "SFX/Launching.wav").Play(false, 0, 10, 0);
         }
-
-        
     }
 }
 

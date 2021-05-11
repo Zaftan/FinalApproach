@@ -18,7 +18,7 @@ class Plank : Placable
 
         AddChild(body);
 
-        mainCollider= new PhysicsRectangle(width, height, new Vector2(0, 0));
+        mainCollider = new PhysicsRectangle(width, height, new Vector2(0, 0));
         //rect.SetColor(System.Drawing.Color.Red);
         PhysicsObjects.Add(mainCollider);
 
@@ -48,13 +48,11 @@ class Plank : Placable
 
     protected override void Collide()
     {
-
+        //
     }
 
     protected override void Run()
     {
         base.Run();
-
-
     }
 }
