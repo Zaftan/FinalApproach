@@ -22,7 +22,7 @@ public class menu : Scene
 
 public class settings : Scene
 {
-    public int volume = 10;
+    public float volume = 10;
 
     public settings() : base("Settings") { }
 
@@ -32,18 +32,18 @@ public class settings : Scene
     {   
         base.onLoad();
         Sprite sprite = new Sprite(Settings.ASSET_PATH + "Art/Music.png");
-        sprite.x = 75;
-        sprite.y = 75;
+        sprite.x = 175;
+        sprite.y = 150;
         AddChild(sprite);
-        AddChild(new ControlButton(200, 225, "<", "-", "Minus.png"));
-        AddChild(new ControlButton(700, 225, ">", "+", "Plus.png"));
-        AddChild(new LvSwtchButton(400, 400, "", new menu(), "Back.png"));
+        AddChild(new ControlButton(300, 300, "<", "-", "Minus.png"));
+        AddChild(new ControlButton(800, 300, ">", "+", "Plus.png"));
+        AddChild(new LvSwtchButton(600, 500, "", new menu(), "Back.png"));
     }
 
     public override void Update()
     {
         graphics.Clear(Color.Empty);
-        graphics.DrawString(volume.ToString(), funt, Brushes.White, 400, 225);
+        graphics.DrawString(volume.ToString(), funt, Brushes.White, 400, 100);
     }
 
     public override void recieveMessage(string message)
