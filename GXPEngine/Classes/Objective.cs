@@ -21,7 +21,7 @@ class Objective : PhysicsRectangle
         //SetColor(System.Drawing.Color.Green);
         dest = destination;
 
-        rocket = ((Level2)game.Currentscene).rocket;
+        rocket = ((Level)game.Currentscene).rocket;
     }
 
     public override void Update()
@@ -53,7 +53,7 @@ class Objective : PhysicsRectangle
     {
         if (other is Quokka)
         {
-            ((Ball)other).Die();
+            ((Quokka)other).LateDestroy();
 
             if (deadTimer == null)
             {
