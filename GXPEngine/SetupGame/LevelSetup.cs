@@ -7,33 +7,36 @@ using GXPEngine.Core;
 using GXPEngine.Physics;
 using System.Drawing;
 
-public class EngineTest : Level
+public class Level2 : Level
 {
-    public EngineTest() : base("level1")
+    public Level2() : base("level2")
     {
         gravity = new Vector2(0, 2000f);
     }
 
     public override void onLoad()
     {
+        Destructor bottemDestructor = new Destructor(width, 50, width/2, height - 25);
+        bottemDestructor.SetColor(System.Drawing.Color.Red);
+        AddChild(bottemDestructor);
         AddChild(new MetalWall(3, 215, 550));
 
         AddChild(new MetalWall(3, 730, 600));
         AddChild(new MetalWall(2, 730, 600, -90));
         AddChild(new MetalWall(1, 1135, 600, -90));
         AddChild(new MetalWall(2, 1215, 500));
-        AddChild(new Destroyer(915, 587, -90));
+        AddChild(new Laser(915, 587, -90));
 
         AddChild(new MetalWall(2, 540, 650));
         AddChild(new MetalWall(2, 538, 360, 90));
         AddChild(new MetalWall(1, 538, 360));
-        AddChild(new Destroyer(360, 125));
+        AddChild(new Laser(360, 125));
 
         AddChild(new MetalWall(2, 755, 125));
         AddChild(new MetalWall(2, 965, 125));
 
         AddChild(new MetalWall(1, 1215, 277));
-        AddChild(new MetalWall(2, 1215, 300, -90));
+        AddChild(new MetalWall(3, 1215, 300, -90));
 
         base.onLoad();
     }
@@ -64,8 +67,8 @@ public class Level : Scene
     {
         base.onLoad();
 
-        AddChild(new PhysicsLine(0, height - 50, width, height - 50));
-        AddChild(new PhysicsLine(0, height + 45, width, height + 45));
+/*        AddChild(new PhysicsLine(0, height - 50, width, height - 50));
+        AddChild(new PhysicsLine(0, height + 45, width, height + 45));*/
         AddChild(new PhysicsLine(0, 0, 0, height));
         AddChild(new PhysicsLine(width, height, width, 0));
         AddChild(new PhysicsLine(width, 120, 0, 120));
