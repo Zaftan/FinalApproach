@@ -8,6 +8,7 @@ public class MyGame : Game
 {
 	public SoundChannel soundChannel;
 	public Mouse mouse;
+	public SettingScreen sc;
 
 	public MyGame() : base(1440, 810, false, false)
 	{
@@ -15,7 +16,7 @@ public class MyGame : Game
 
 		mouse = new Mouse();
 		AddChildAt(mouse, 100);
-		sc = new settings();
+		sc = new SettingScreen();
 
 		_sceneManager.addscene(new Menu());
 		_sceneManager.addscene(sc);

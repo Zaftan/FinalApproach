@@ -76,8 +76,6 @@ public class SettingScreen : Screen
                 }
             }
         }
-
-        Settings.volume = volume;
     }
 }
 
