@@ -40,6 +40,7 @@ public class Spring : Placable
     protected override void Collide()
     {
         body.SetFrame(1);
+        new Sound(Settings.ASSET_PATH + "SFX/SpringJump.wav").Play(false, 0, 10, 0);
     }
 
     protected override void Run()
