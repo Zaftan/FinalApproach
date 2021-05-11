@@ -17,9 +17,10 @@ public class MyGame : Game
 		mouse = new Mouse();
 		AddChildAt(mouse, 100);
 
-     //_sceneManager.addscene(new menu());
-		_sceneManager.addscene(new settings());
+		//_sceneManager.addscene(new menu());
+		//_sceneManager.addscene(new settings());
 		_sceneManager.addscene(new Level2());
+		_sceneManager.addscene(new settings());
 		sc = new settings();
 	}
 

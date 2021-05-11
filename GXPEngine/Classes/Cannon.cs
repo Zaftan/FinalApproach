@@ -23,7 +23,7 @@ public class Cannon : Sprite
 
         PhysicsRectangle rect = new PhysicsRectangle(body.width, body.height, new Vector2(x, y));
         //rect.SetColor(System.Drawing.Color.Red);
-        game.Currentscene.AddChild(rect);
+        //game.Currentscene.AddChild(rect);
         AddChildAt(body, 1000);
     }
 

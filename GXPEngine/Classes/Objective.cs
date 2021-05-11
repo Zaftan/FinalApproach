@@ -9,6 +9,8 @@ using GXPEngine.Physics;
 
 class Objective : PhysicsRectangle
 {
+    //Level2 lvl2 = new Level2();
+    AnimationSprite rocket;
     SceneManager _sceneManager;
     Timer deadTimer;
     string dest;
@@ -18,17 +20,27 @@ class Objective : PhysicsRectangle
         trigger = true;
         SetColor(System.Drawing.Color.Green);
         dest = destination;
+
+        rocket = ((Level2)game.Currentscene).rocket;
+        rocket.SetCycle(1, 18);
     }
+
     public override void Update()
     {
         base.Update();
         if (deadTimer != null)
         {
-            if (deadTimer.done)
+            if (rocket.y >= 100)
             {
-                LateRemove();
-                game.SceneManager.GotoNextscene();
+                rocket.y--;
             }
+
+            //if(rocket.y <= 100)
+            //{
+            //    LateRemove();
+            //    game.SceneManager.GotoNextscene();
+            //}
+            
         }
     }
 
@@ -40,7 +52,8 @@ class Objective : PhysicsRectangle
 
             if (deadTimer == null)
             {
-                deadTimer = new Timer(0.1f);
+                deadTimer = new Timer(10.0f);
+                
                 AddChild(deadTimer);
             }
         }

@@ -9,6 +9,8 @@ using System.Drawing;
 
 public class Level2 : Level
 {
+    public AnimationSprite rocket = new AnimationSprite(Settings.ASSET_PATH + "Art/RocketshipAnimation.png", 6, 3);
+
     public Level2() : base("level2")
     {
         gravity = new Vector2(0, 2000f);
@@ -38,9 +40,14 @@ public class Level2 : Level
         AddChild(new MetalWall(1, 1215, 277));
         AddChild(new MetalWall(3, 1215, 300, -90));
 
-        AddChild(new Destroyer(20, 180, 925, 585, -90));
+        //AddChild(new Destroyer(20, 180, 925, 585, -90));
 
         AddChild(new Objective(125, 125, 1375, 750, "settings"));
+
+        rocket.scaleX = 0.5f;
+        rocket.scaleY = 0.5f;
+        AddChild(rocket);
+        rocket.SetXY(1275, 650);
 
         base.onLoad();
     }
