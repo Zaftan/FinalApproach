@@ -14,9 +14,9 @@ public class Destructor : PhysicsRectangle
 
     public override void Collide(PhysicsObject other)
     {
-        if (other is Ball)
+        if (other is Quokka)
         {
-            ((Ball)other).Die();
+            ((Quokka)other).Die();
         }
     }
 }

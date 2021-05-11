@@ -56,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Ball.cs" />
+    <Compile Include="Classes\Quokka.cs" />
     <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Cannon.cs" />
     <Compile Include="Classes\Laser.cs" />
@@ -68,6 +68,7 @@
     <Compile Include="Classes\Placable.cs" />
     <Compile Include="Classes\PlacementButtons.cs" />
     <Compile Include="Classes\Player.cs" />
+    <Compile Include="Classes\Spikes.cs" />
     <Compile Include="Classes\Spring.cs" />
     <Compile Include="Classes\Plank.cs" />
     <Compile Include="GXPEngine\AddOns\Timer.cs" />

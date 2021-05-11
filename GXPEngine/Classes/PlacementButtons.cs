@@ -43,9 +43,14 @@ public class PlankButton : PlacementButtons
 
 public abstract class PlacementButtons : Button
 {
+    Canvas overlay;
+    public int stock;
+
     protected PlacementButtons(float inpX, float inpY, string path) : base(inpX, inpY, "", path + ".png", 2)
     {
         
     }
+
+
 }
 

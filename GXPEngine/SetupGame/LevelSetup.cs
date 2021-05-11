@@ -11,14 +11,14 @@ public class Level2 : Level
 {
     public Level2() : base("level2")
     {
-        gravity = new Vector2(0, 2000f);
+        gravity = new Vector2(0, 500f);
+        resistance = 0f;
     }
 
     public override void onLoad()
     {
-        Destructor bottemDestructor = new Destructor(width, 50, width/2, height - 25);
-        bottemDestructor.SetColor(System.Drawing.Color.Red);
-        AddChild(bottemDestructor);
+        AddChild(new Spikes(30, 0, height - 30));
+
         AddChild(new MetalWall(3, 215, 550));
 
         AddChild(new MetalWall(3, 730, 600));
@@ -32,6 +32,7 @@ public class Level2 : Level
         AddChild(new MetalWall(1, 538, 360));
         AddChild(new Laser(360, 125));
 
+        AddChild(new Spikes(4, 965, 170, 180));
         AddChild(new MetalWall(2, 755, 125));
         AddChild(new MetalWall(2, 965, 125));
 
@@ -50,10 +51,34 @@ public class Level2 : Level
     }
 }
 
+public class Level1 : Level
+{
+    public Level1() : base("level1")
+    {
+        gravity = new Vector2(0, 2000f);
+        resistance = 0.01f;
+    }
+
+    public override void onLoad()
+    {
+        AddChild(new MetalWall(2, 400, 125));
+        AddChild(new MetalWall(3, 400, 500));
+        AddChild(new MetalWall(4, 800, 125));
+        AddChild(new MetalWall(3, 800, 700));
+
+        base.onLoad();
+    }
+
+    public override void Update()
+    {
+    }
+}
+
 public class Level : Scene 
 {
     public Camera mainCam;
     public Vector2 gravity;
+    public float resistance;
 
     protected Sprite panel;
     protected MyGame myGame;
