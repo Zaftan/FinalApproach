@@ -64,6 +64,7 @@
     <Compile Include="Classes\Pillow.cs" />
     <Compile Include="Classes\MetalWall.cs" />
     <Compile Include="Classes\Mouse.cs" />
+    <Compile Include="Classes\Objective.cs" />
     <Compile Include="Classes\Placable.cs" />
     <Compile Include="Classes\PlacementButtons.cs" />
     <Compile Include="Classes\Player.cs" />
