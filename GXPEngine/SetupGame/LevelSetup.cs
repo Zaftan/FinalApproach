@@ -38,6 +38,10 @@ public class Level2 : Level
         AddChild(new MetalWall(1, 1215, 277));
         AddChild(new MetalWall(3, 1215, 300, -90));
 
+        AddChild(new Destroyer(20, 180, 925, 585, -90));
+
+        AddChild(new Objective(125, 125, 1375, 750, "settings"));
+
         base.onLoad();
     }
 

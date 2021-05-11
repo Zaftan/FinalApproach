@@ -44,9 +44,9 @@ namespace GXPEngine.Physics
 		{
 			get { return _easyDraw; }
 		}
-		protected Level _currentScene
+		protected Scene _currentScene
 		{
-			get { return (Level)game.Currentscene; }
+			get { return game.Currentscene; }
 		}
 
 		protected int _width;
@@ -179,9 +179,9 @@ namespace GXPEngine.Physics
 
 		protected virtual void setAccelleration()
 		{
-			if (effectedByGravity)
+			if (effectedByGravity && _currentScene is Level)
 			{
-				acceleration += _currentScene.gravity;
+				acceleration += ((Level)_currentScene).gravity;
 			}
 		}
 	}
