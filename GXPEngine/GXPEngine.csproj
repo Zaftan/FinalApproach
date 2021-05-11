@@ -83,8 +83,6 @@
     <Compile Include="GXPEngine\Physics\PhysicsObject.cs" />
     <Compile Include="GXPEngine\Physics\PhysicsPolygon.cs" />
     <Compile Include="GXPEngine\Physics\PhysicsRectangle.cs" />
-    <Compile Include="Levels\menu.cs" />
-    <Compile Include="Levels\GameSettings.cs" />
     <Compile Include="GXPEngine\Physics\PhysicsTriangle.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="GXPEngine\Canvas.cs" />
@@ -125,7 +123,7 @@
     <Compile Include="GXPEngine\SoLoud\Soloud.cs" />
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
     <Compile Include="SetupGame\LevelSetup.cs" />
-    <Compile Include="SetupGame\ScreensSetup.cs" />
+    <Compile Include="SetupGame\ScreenSetup.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -133,5 +131,8 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Levels\" />
   </ItemGroup>
 </Project>

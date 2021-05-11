@@ -50,7 +50,7 @@ public abstract class PlacementButtons : Button
     public int stock;
     protected Placable placable;
 
-    protected PlacementButtons(float inpX, float inpY, string path, int pStock = 1) : base(inpX, inpY, "", path + ".png", 3)
+    protected PlacementButtons(float inpX, float inpY, string path, int pStock = 1) : base(inpX, inpY, path + ".png", 3)
     {
         overlay = new Canvas(width, height * 3);
         overlay.SetOrigin(overlay.width / 2, overlay.height / 2);
