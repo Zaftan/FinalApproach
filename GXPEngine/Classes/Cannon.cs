@@ -32,7 +32,7 @@ public class Cannon : Sprite
 
         if (body.currentFrame > 35)
         {
-            Ball ball = new Ball(10);
+            Quokka ball = new Quokka(15);
             ball.position = new Vector2(x, y);
             ball.velocity = new Vector2(0, 1500f);
             game.Currentscene.AddChildAt(ball, 100);
