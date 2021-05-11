@@ -21,6 +21,7 @@ public class MyGame : Game
 		_sceneManager.addscene(new settings());
 		_sceneManager.addscene(new Level1());
 		_sceneManager.addscene(new Level2());
+		_sceneManager.addscene(new Level3());
 		sc = new settings();
 	}
 

@@ -71,6 +71,7 @@
     <Compile Include="Classes\Spikes.cs" />
     <Compile Include="Classes\Spring.cs" />
     <Compile Include="Classes\Plank.cs" />
+    <Compile Include="Classes\Star.cs" />
     <Compile Include="GXPEngine\AddOns\Timer.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\Scene.cs" />

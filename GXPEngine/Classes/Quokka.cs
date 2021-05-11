@@ -16,7 +16,7 @@ class Quokka : PhysicsCircle
         //SetColor(System.Drawing.Color.Blue);
         effectedByGravity = true;
         bouncyness = 0.65f;
-
+        
         body = new Sprite(Settings.ASSET_PATH + "Art/Quokka.png", false);
         body.SetOrigin(radius, radius);
         AddChild(body);
@@ -70,7 +70,7 @@ class Quokka : PhysicsCircle
 
         if (Input.GetKeyDown(Key.S))
         {
-            Destroy();
+            Die();
         }
     }
 
@@ -80,6 +80,8 @@ class Quokka : PhysicsCircle
         {
             deadTimer = new Timer(0.05f);
             AddChild(deadTimer);
+            LateRemove();
+            parent.recieveMessage("dead");
         }
 
         SetColor(System.Drawing.Color.Red);
