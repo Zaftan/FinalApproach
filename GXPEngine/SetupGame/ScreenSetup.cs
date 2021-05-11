@@ -22,7 +22,7 @@ public class Menu : Screen
 
 public class SettingScreen : Screen
 {
-    public int volume = 10;
+    public float volume = 10;
 
     public SettingScreen() : base("Settings") { }
 

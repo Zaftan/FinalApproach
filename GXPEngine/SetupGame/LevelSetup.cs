@@ -48,10 +48,12 @@ public class Level3 : Level
 
         AddChild(new MetalWall(1, 1215, 277));
         AddChild(new MetalWall(3, 1215, 300, -90));
+        
+        base.onLoad();
 
         AddChild(new Objective(125, 125, 1375, 750, "settings"));
+        rocket.SetXY(1275, 650);
 
-        base.onLoad();
     }
 }
 
@@ -86,7 +88,11 @@ public class Level2 : Level
         AddChild(new Laser(1173, 170));
         AddChild(new Star(1300, 300));
 
+
         base.onLoad();
+
+        AddChild(new Objective(125, 125, 1375, 750, "settings"));
+        rocket.SetXY(1275, 650);
     }
 }
 
@@ -117,6 +123,9 @@ public class Level1 : Level
         AddChild(new MetalWall(3, 800, 700));
 
         base.onLoad();
+
+        AddChild(new Objective(125, 125, 1375, 750, "settings"));
+        rocket.SetXY(1275, 650);
     }
 }
 
@@ -126,6 +135,7 @@ public class Level : Scene
     public Vector2 gravity;
     public float resistance;
     public int stars;
+    public AnimationSprite rocket;
 
     protected Sprite panel;
     protected MyGame myGame;
@@ -187,6 +197,10 @@ public class Level : Scene
         panel.AddChild(new PlankButton(450, 85, plankStock));
         panel.AddChild(new SpringButton(650, 85, springStock));
         panel.AddChild(new PillowButton(850, 85, pillowStock));
+
+        rocket = new AnimationSprite(Settings.ASSET_PATH + "Art/RocketshipAnimation.png", 6, 3);
+        rocket.scale = 0.5f;
+        AddChild(rocket);
 
         starBar = new AnimationSprite(Settings.ASSET_PATH + "Art/StarBar.png", 4, 1, 4, false, false);
         starBar.SetXY(1150, 50);
