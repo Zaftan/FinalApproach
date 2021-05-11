@@ -11,6 +11,7 @@ public abstract class Placable : GameObject
     protected List<PhysicsObject> PhysicsObjects;
     public int width = 0;
     public int height = 0;
+    public PhysicsRectangle mainCollider;
 
     Vector2 oldPos;
     Vector2 position;
@@ -40,12 +41,29 @@ public abstract class Placable : GameObject
         {
             ((MyGame)game).mouse.recieve(this);
         }
-
         oldPos = position;
         oldRotation = rotation;
     }
 
-    protected abstract void Run();
+    public override void Destroy()
+    {
+        base.Destroy();
+
+        foreach (PhysicsObject physicsObject in PhysicsObjects)
+        {
+            physicsObject.Destroy();
+        }
+    }
+
+    protected virtual void Run()
+    {
+        if (mainCollider.collided)
+        {
+            Collide();
+        }
+    }
+
+    protected abstract void Collide();
 
     protected void Update()
     {

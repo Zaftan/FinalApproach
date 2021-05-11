@@ -48,8 +48,16 @@ public class Mouse : GameObject
 
     private void release()
     {
-        equipped.SetXY(position.x, position.y);
-        game.Currentscene.AddChild(equipped);
+        if (y < 120)
+        {
+            equipped.Destroy();
+        }
+        else
+        {
+            equipped.SetXY(position.x, position.y);
+            game.Currentscene.AddChild(equipped);
+        }
+
         equipped = null;
     }
 
