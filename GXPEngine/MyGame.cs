@@ -20,6 +20,8 @@ public class MyGame : Game
 
 		_sceneManager.addscene(new Menu());
 		_sceneManager.addscene(sc);
+		_sceneManager.addscene(new MerchScreen());
+		_sceneManager.addscene(new Comic());
 		_sceneManager.addscene(new Level1());
 		_sceneManager.addscene(new Level2());
 		_sceneManager.addscene(new Level3());

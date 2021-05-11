@@ -202,6 +202,8 @@ public class Level : Scene
         rocket.scale = 0.5f;
         AddChild(rocket);
 
+        panel.AddChild(new ButtenAssembly(72, 30, 3, 0.7f));
+
         starBar = new AnimationSprite(Settings.ASSET_PATH + "Art/StarBar.png", 4, 1, 4, false, false);
         starBar.SetXY(1150, 50);
         panel.AddChild(starBar);

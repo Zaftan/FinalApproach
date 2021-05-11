@@ -7,14 +7,16 @@ using System.Drawing;
 
 public class ButtenAssembly : GameObject
 {
-    public ButtenAssembly(int pX, int pY) : base(false)
+    public ButtenAssembly(int pX, int pY, int amount = 3, float pScale = 1) : base(false)
     {
         x = pX;
         y = pY;
 
-        AddChild(new LvSwtchButton(0, 0, new Menu(), "Menu.png", 2));
-        AddChild(new LvSwtchButton(0, 80, new SettingScreen(), "Options.png", 2));
-        AddChild(new ResetButton(0, 160));
+        scale = pScale;
+
+        if (amount > 0) AddChild(new LvSwtchButton(0, 80, new SettingScreen(), "Options.png", 2));
+        if (amount > 1) AddChild(new LvSwtchButton(0, 0, new Menu(), "Menu.png", 2)); 
+        if (amount > 2) AddChild(new ResetButton(0, 160));
     }
 }
 
@@ -77,6 +79,18 @@ public class BackButton : Button
     protected override void click()
     {
         game.SceneManager.GotoPreviousscene();
+    }
+}
+
+public class StopButton : Button
+{
+    public StopButton(float inpX, float inpY) : base(inpX, inpY, "ExitButton.png", 2)
+    {
+    }
+
+    protected override void click()
+    {
+        game.LateDestroy();
     }
 }
 
