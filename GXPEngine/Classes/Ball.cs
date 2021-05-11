@@ -14,7 +14,7 @@ class Ball : PhysicsCircle
     {
         SetColor(System.Drawing.Color.Blue);
         effectedByGravity = true;
-        bouncyness = 0.5f;
+        bouncyness = 0.65f;
     }
 
     public override bool moving
@@ -41,7 +41,13 @@ class Ball : PhysicsCircle
 
     protected override void applyVelocity()
     {
-        velocity -= 0.005f * velocity;
+        if (velocity.length > 1500f)
+        {
+             velocity.length = 1500f;
+        }
+
+        //Console.WriteLine(velocity.length);
+        //velocity -= 0.007f * velocity;
         base.applyVelocity();
     }
 

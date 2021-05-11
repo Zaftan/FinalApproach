@@ -24,7 +24,7 @@ namespace GXPEngine.Managers
 				{
 					if (physicsObject.Colliding(other))
 					{
-						break;
+						//break;
 					}
 				}
 			}

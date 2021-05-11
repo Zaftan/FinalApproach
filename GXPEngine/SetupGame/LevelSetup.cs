@@ -16,8 +16,6 @@ public class EngineTest : Level
 
     public override void onLoad()
     {
-        base.onLoad();
-
         AddChild(new MetalWall(3, 215, 550));
 
         AddChild(new MetalWall(3, 730, 600));
@@ -36,48 +34,26 @@ public class EngineTest : Level
 
         AddChild(new MetalWall(1, 1215, 277));
         AddChild(new MetalWall(2, 1215, 300, -90));
+
+        base.onLoad();
     }
 
     public override void Update()
     {
-        if (Input.GetKeyUp(Key.S))
-        {
-            Ball ball = new Ball(10);
-            ball.position = new Vector2(80, 200);
-
-            AddChild(ball);
-        }
-
-        if (Input.GetMouseButtonUp(2))
-        {
-            PhysicsCircle circle = new PhysicsCircle(10, new Vector2(Input.mouseX, Input.mouseY));
-            circle.SetColor(Color.Red);
-
-            AddChild(circle);
-        }
     }
 }
 
 public class Level : Scene 
 {
-    protected Camera mainCam;
-    public Player player;
+    public Camera mainCam;
     public Vector2 gravity;
 
+    protected Sprite panel;
     protected MyGame myGame;
 
     public Level(string name) : base(name, Settings.ASSET_PATH + "Art/" + name + "Background.png")
     {
         myGame = (MyGame)game;
-
-        AddChild(new PhysicsLine(0, height, width, height));
-        AddChild(new PhysicsLine(0, 0, 0, height));
-        AddChild(new PhysicsLine(width, height, width, 0));
-        AddChild(new PhysicsLine(width, 120, 0, 120));
-
-        AddChild(new PlankButton(350, 50));
-        AddChild(new SpringButton(550, 50));
-        AddChild(new PillowButton(750, 50));
     }
 
     public override void Update()
@@ -88,8 +64,26 @@ public class Level : Scene
     {
         base.onLoad();
 
-        player = new Player();
-        AddChild(player);
+        AddChild(new PhysicsLine(0, height - 50, width, height - 50));
+        AddChild(new PhysicsLine(0, height + 45, width, height + 45));
+        AddChild(new PhysicsLine(0, 0, 0, height));
+        AddChild(new PhysicsLine(width, height, width, 0));
+        AddChild(new PhysicsLine(width, 120, 0, 120));
+        AddChild(new Cannon(80, 186));
+
+        panel = new Sprite(Settings.ASSET_PATH + "Art/Panel.png", false, false);
+        panel.height = 130;
+
+        panel.AddChild(new PlankButton(350, 85));
+        panel.AddChild(new SpringButton(550, 85));
+        panel.AddChild(new PillowButton(750, 85));
+
+        //panel.SetOrigin(0, panel.height);
+        //panel.rotation = 90;
+        AddChildAt(panel, 1000);
+
+        mainCam = new Camera(0, 0, width, height);
+        AddChild(mainCam);
     }
 
     public override void onLeave()

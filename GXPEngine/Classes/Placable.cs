@@ -11,6 +11,7 @@ public abstract class Placable : GameObject
     protected List<PhysicsObject> PhysicsObjects;
     public int width = 0;
     public int height = 0;
+    public PhysicsRectangle mainCollider;
 
     Vector2 oldPos;
     Vector2 position;
@@ -54,7 +55,15 @@ public abstract class Placable : GameObject
         }
     }
 
-    protected abstract void Run();
+    protected virtual void Run()
+    {
+        if (mainCollider.collided)
+        {
+            Collide();
+        }
+    }
+
+    protected abstract void Collide();
 
     protected void Update()
     {

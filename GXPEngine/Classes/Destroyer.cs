@@ -23,7 +23,8 @@ class Destroyer : GameObject
         laser.position.RotateAroundDegrees(rotation, new GXPEngine.Core.Vector2(x, y));
         laser.vecRotation.RotateDegrees(rotation);
         game.Currentscene.AddChild(laser);
-        body.SetFrame(34);
+
+        body.SetCycle(20, 20, 5);
         laserDelay.Start();
     }
     private void Off()
@@ -65,7 +66,17 @@ class Destroyer : GameObject
 
     void Update()
     {
-        if (laserDelay.done)
+        
+        if (body.currentFrame == 18)
+        {
+            On();
+        }
+        else if (body.currentFrame > 0)
+        {
+            body.Animate();
+        }
+        
+        if (laserDelay.done && (body.currentFrame > 19 || body.currentFrame == 0))
         {
             if (on)
             {
@@ -73,7 +84,8 @@ class Destroyer : GameObject
             }
             else if (!on)
             {
-                On();
+                body.SetCycle(0, 20, 0);
+                body.SetFrame(1);
             }
         }
     }
