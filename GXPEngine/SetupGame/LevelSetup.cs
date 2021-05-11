@@ -15,8 +15,8 @@ public class Level3 : Level
         gravity = new Vector2(0, 500f);
         resistance = 0f;
         window.SetXY(420f, 165f);
-        //window.scale = 1.07f;
         window.SetCycle(0, 14, 6);
+
         plankStock = 5;
         springStock = 4;
         pillowStock = 3;
@@ -69,7 +69,6 @@ public class Level2 : Level
 
     public override void onLoad()
     {
-        
         AddChild(new Spikes(30, 0, height - 30));
 
         AddChild(new MetalWall(3, 295, 75));
