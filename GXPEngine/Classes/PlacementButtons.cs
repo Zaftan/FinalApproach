@@ -78,6 +78,7 @@ public abstract class PlacementButtons : Button
     protected override void click()
     {
         stock--;
+        new Sound(Settings.ASSET_PATH + "SFX/PlaceObject.wav").Play(false, 0, 10, 0);
     }
 }
 

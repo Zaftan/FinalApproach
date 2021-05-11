@@ -14,6 +14,7 @@ class Objective : PhysicsRectangle
     SceneManager _sceneManager;
     Timer deadTimer;
     string dest;
+    bool played = false;
 
     public Objective(int width, int height, int x, int y, string destination) : base(width, height, x, y)
     {
@@ -34,9 +35,14 @@ class Objective : PhysicsRectangle
             if (rocket.y >= 100)
             {
                 rocket.y--;
+                if (played == false)
+                {
+                    new Sound(Settings.ASSET_PATH + "SFX/Rocket.wav").Play(false, 0, 10, 0);
+                    played = true;
+                }
             }
 
-            if(rocket.currentFrame >= 11)
+            if (rocket.currentFrame >= 11)
             {
                 rocket.SetCycle(13, 18);
             }
@@ -60,6 +66,7 @@ class Objective : PhysicsRectangle
                 deadTimer = new Timer(0.1f);
                 
                 AddChild(deadTimer);
+                new Sound(Settings.ASSET_PATH + "SFX/LevelWin.wav").Play(false, 0, 10, 0);
             }
         }
     }

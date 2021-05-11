@@ -40,6 +40,7 @@ class LvSwtchButton : Button
         {
             base.click();
         }
+        new Sound(Settings.ASSET_PATH + "SFX/Button.wav").Play(false, 0, 10, 0);
     }
 }
 
@@ -56,6 +57,7 @@ public class ControlButton : Button
     {
         base.click();
         parent.recieveMessage(message);
+        new Sound(Settings.ASSET_PATH + "SFX/Button.wav").Play(false, 0, 10, 0);
     }
 }
 
@@ -80,6 +82,7 @@ public class Button : AnimationSprite
 
     protected virtual void click()
     {
+        //
     }
 
     public virtual void Update()
