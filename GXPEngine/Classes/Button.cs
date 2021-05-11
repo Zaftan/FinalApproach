@@ -91,6 +91,7 @@ public class ResetButton : Button
     protected override void click()
     {
         game.SceneManager.Reloadscene();
+        new Sound(Settings.ASSET_PATH + "SFX/LevelRetry.wav").Play(false, 0, 10, 0);
     }
 }
 
