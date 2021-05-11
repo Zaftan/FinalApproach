@@ -8,15 +8,12 @@ using GXPEngine.Physics;
 public class Star : PhysicsCircle
 {
     AnimationSprite body;
-    Timer respawnTimer;
+    //Timer respawnTimer;
     bool active;
 
     public Star(int pX, int pY) : base(35, new GXPEngine.Core.Vector2(pX, pY))
     {
         trigger = true;
-
-        respawnTimer = new Timer(0.06f);
-        AddChild(respawnTimer);
 
         StartAgain();
 
@@ -25,32 +22,27 @@ public class Star : PhysicsCircle
 
     public void StartAgain()
     {
-        respawnTimer.Start();
         active = true;
     }
 
     public override void Update()
     {
-        if (respawnTimer.done)
+
+        base.Update();
+
+        if (body.parent == null && active)
         {
-            base.Update();
+            body = new AnimationSprite(Settings.ASSET_PATH + "Art/StarSheet.png", 7, 3, 21);
+            body.SetOrigin(body.width / 2, body.height / 2);
+            body.SetCycle(0, 12, 5);
+            AddChild(body);
+        }
 
-            if (body.parent == null)
-            {
-                body = new AnimationSprite(Settings.ASSET_PATH + "Art/StarSheet.png", 7, 3, 21);
-                body.SetOrigin(body.width / 2, body.height / 2);
-                body.SetCycle(0, 12, 5);
-                AddChild(body);
-            }
+        body.Animate();
 
-            body.Animate();
-
-            if (body.currentFrame > 19)
-            {
-                body.LateDestroy();
-                respawnTimer.Stop();
-                respawnTimer.done = false;
-            }
+        if (body.currentFrame > 19)
+        {
+            body.LateDestroy();
         }
     }
 

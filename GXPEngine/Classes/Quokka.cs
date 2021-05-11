@@ -9,7 +9,7 @@ using GXPEngine;
 class Quokka : PhysicsCircle
 {
     Timer deadTimer;
-    Sprite body;
+    AnimationSprite body;
 
     public Quokka(int pRadius) : base(pRadius, new GXPEngine.Core.Vector2(0, 0))
     {
@@ -17,7 +17,7 @@ class Quokka : PhysicsCircle
         effectedByGravity = true;
         bouncyness = 0.65f;
         
-        body = new Sprite(Settings.ASSET_PATH + "Art/Quokka.png", false);
+        body = new AnimationSprite(Settings.ASSET_PATH + "Art/Quokka.png", 5, 1, 5, false, false);
         body.SetOrigin(radius, radius);
         AddChild(body);
     }
@@ -42,6 +42,8 @@ class Quokka : PhysicsCircle
         {
             velocity.Reflect(Vector2.DirectionBetween(position, other.position).Normalized(), reflectStrength);
         }
+
+        body.SetFrame(Utils.Random(1, 3));
     }
 
     protected override void applyVelocity()
@@ -58,19 +60,25 @@ class Quokka : PhysicsCircle
 
     public override void Update()
     {
-        body.rotation = velocity.angleDeg + 90;
+        if (velocity.length > 100f)
+        {
+            body.rotation = velocity.angleDeg + 90;
+        }
 
         if (deadTimer != null)
         {
             if (deadTimer.done)
                 LateRemove();
         }
-
-        base.Update();
+        if (game.Currentscene is Level)
+        {
+            base.Update();
+        }
+        
 
         if (Input.GetKeyDown(Key.S))
         {
-            Die();
+            LateRemove();
         }
     }
 
@@ -78,13 +86,11 @@ class Quokka : PhysicsCircle
     {
         if (deadTimer == null)
         {
-            deadTimer = new Timer(0.05f);
+            deadTimer = new Timer(0.01f);
             AddChild(deadTimer);
-            LateRemove();
+            //LateRemove();
             parent.recieveMessage("dead");
         }
-
-        SetColor(System.Drawing.Color.Red);
     }
 }
 

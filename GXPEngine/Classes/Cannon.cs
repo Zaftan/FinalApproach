@@ -9,6 +9,7 @@ using GXPEngine.Physics;
 public class Cannon : Sprite
 {
     AnimationSprite body;
+    Quokka quokka;
 
     public Cannon(int pX, int pY) : base(Settings.ASSET_PATH + "Art/Cannonbacksprite.png", true, false)
     {
@@ -20,36 +21,41 @@ public class Cannon : Sprite
         body = new AnimationSprite(Settings.ASSET_PATH + "Art/LaucherSheet2.png", 10, 4, 38, false, false);
         body.SetOrigin(body.width/2, body.height/2);
         body.SetCycle(0, 37, 1);
+        body.SetXY(x, y);
 
         PhysicsRectangle rect = new PhysicsRectangle(body.width, body.height, new Vector2(x, y));
         //rect.SetColor(System.Drawing.Color.Red);
         game.Currentscene.AddChild(rect);
-        AddChildAt(body, 1000);
+
+        game.Currentscene.AddChildAt(body, 100);
     }
 
     void Update()
     {
 
-        if (body.currentFrame > 35)
+        if (body.currentFrame > 0 && body.currentFrame <= 35)
         {
-            Quokka ball = new Quokka(15);
-            ball.position = new Vector2(x, y);
-            ball.velocity = new Vector2(0, 1500f);
-            game.Currentscene.AddChildAt(ball, 100);
-
+            body.Animate();
+            quokka.position.SetXY(x, y + 50);
+        }
+        else if (body.currentFrame > 35)
+        {
             ((Level)game.Currentscene).mainCam.Shake();
 
             body.SetFrame(0);
         }
-        else if (body.currentFrame > 0)
-        {
-            body.Animate();
-        }
 
         if (Input.GetKeyUp(Key.S))
         {
+            quokka = new Quokka(15);
+            
+            quokka.velocity = new Vector2(0, 1500f);
+            game.Currentscene.AddChildAt(quokka, 10);
+
             body.SetFrame(1);
         }
+
+        
     }
 }
 

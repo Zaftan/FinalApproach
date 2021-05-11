@@ -129,7 +129,11 @@ public class Level : Scene
     public override void Update()
     {
         starBar.SetFrame(stars);
-        Console.WriteLine(stars);
+
+        if (Input.GetKeyDown(Key.S))
+        {
+            ReloadStars();
+        }
     }
 
     private void ReloadStars()
@@ -152,21 +156,19 @@ public class Level : Scene
         AddChild(new PhysicsLine(0, 0, 0, height));
         AddChild(new PhysicsLine(width, height, width, 0));
         AddChild(new PhysicsLine(width, 120, 0, 120));
-        AddChild(new Cannon(80, 186));
+        AddChildAt(new Cannon(80, 186), 1);
 
         panel = new Sprite(Settings.ASSET_PATH + "Art/Panel.png", false, false);
         panel.height = 130;
 
-        panel.AddChild(new PlankButton(350, 85, plankStock));
-        panel.AddChild(new SpringButton(550, 85, springStock));
-        panel.AddChild(new PillowButton(750, 85, pillowStock));
+        panel.AddChild(new PlankButton(450, 85, plankStock));
+        panel.AddChild(new SpringButton(650, 85, springStock));
+        panel.AddChild(new PillowButton(850, 85, pillowStock));
 
         starBar = new AnimationSprite(Settings.ASSET_PATH + "Art/StarBar.png", 4, 1, 4, false, false);
         starBar.SetXY(1150, 50);
         panel.AddChild(starBar);
 
-        //panel.SetOrigin(0, panel.height);
-        //panel.rotation = 90;
         AddChildAt(panel, 1000);
 
         mainCam = new Camera(0, 0, width, height);
