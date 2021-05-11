@@ -34,7 +34,7 @@ class Objective : PhysicsRectangle
 
     public override void Collide(PhysicsObject other)
     {
-        if (other is Ball)
+        if (other is Quokka)
         {
             //((Ball)other).Die();
 

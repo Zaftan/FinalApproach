@@ -50,6 +50,19 @@ public class Mouse : GameObject
     {
         if (y < 120)
         {
+            if (equipped is Plank)
+            {
+                ((PlankButton)game.Currentscene.FindObjectOfType(typeof(PlankButton))).stock ++;
+            }
+            if (equipped is Spring)
+            {
+                ((SpringButton)game.Currentscene.FindObjectOfType(typeof(SpringButton))).stock++;
+            }
+            if (equipped is Pillow)
+            {
+                ((PillowButton)game.Currentscene.FindObjectOfType(typeof(PillowButton))).stock++;
+            }
+
             equipped.Destroy();
         }
         else

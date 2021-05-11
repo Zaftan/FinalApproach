@@ -13,6 +13,8 @@ public class Level2 : Level
     {
         gravity = new Vector2(0, 500f);
         resistance = 0f;
+
+        plankStock = springStock = pillowStock = 5;
     }
 
     public override void onLoad()
@@ -39,8 +41,6 @@ public class Level2 : Level
         AddChild(new MetalWall(1, 1215, 277));
         AddChild(new MetalWall(3, 1215, 300, -90));
 
-        AddChild(new Destroyer(20, 180, 925, 585, -90));
-
         AddChild(new Objective(125, 125, 1375, 750, "settings"));
 
         base.onLoad();
@@ -57,6 +57,8 @@ public class Level1 : Level
     {
         gravity = new Vector2(0, 2000f);
         resistance = 0.01f;
+
+        plankStock = springStock = pillowStock = 1;
     }
 
     public override void onLoad()
@@ -83,6 +85,10 @@ public class Level : Scene
     protected Sprite panel;
     protected MyGame myGame;
 
+    protected int plankStock;
+    protected int springStock;
+    protected int pillowStock;
+
     public Level(string name) : base(name, Settings.ASSET_PATH + "Art/" + name + "Background.png")
     {
         myGame = (MyGame)game;
@@ -106,9 +112,9 @@ public class Level : Scene
         panel = new Sprite(Settings.ASSET_PATH + "Art/Panel.png", false, false);
         panel.height = 130;
 
-        panel.AddChild(new PlankButton(350, 85));
-        panel.AddChild(new SpringButton(550, 85));
-        panel.AddChild(new PillowButton(750, 85));
+        panel.AddChild(new PlankButton(350, 85, plankStock));
+        panel.AddChild(new SpringButton(550, 85, springStock));
+        panel.AddChild(new PillowButton(750, 85, pillowStock));
 
         //panel.SetOrigin(0, panel.height);
         //panel.rotation = 90;
