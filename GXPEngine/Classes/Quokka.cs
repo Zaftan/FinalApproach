@@ -6,15 +6,20 @@ using GXPEngine.Physics;
 using GXPEngine.Core;
 using GXPEngine;
 
-class Ball : PhysicsCircle
+class Quokka : PhysicsCircle
 {
     Timer deadTimer;
+    AnimationSprite body;
 
-    public Ball(int pRadius) : base(pRadius, new GXPEngine.Core.Vector2(0, 0))
+    public Quokka(int pRadius) : base(pRadius, new GXPEngine.Core.Vector2(0, 0))
     {
-        SetColor(System.Drawing.Color.Blue);
+        //SetColor(System.Drawing.Color.Blue);
         effectedByGravity = true;
         bouncyness = 0.65f;
+        
+        body = new AnimationSprite(Settings.ASSET_PATH + "Art/Quokka.png", 5, 1, 5, false, false);
+        body.SetOrigin(radius, radius);
+        AddChild(body);
     }
 
     public override bool moving
@@ -37,6 +42,8 @@ class Ball : PhysicsCircle
         {
             velocity.Reflect(Vector2.DirectionBetween(position, other.position).Normalized(), reflectStrength);
         }
+
+        body.SetFrame(Utils.Random(1, 3));
     }
 
     protected override void applyVelocity()
@@ -47,24 +54,31 @@ class Ball : PhysicsCircle
         }
 
         //Console.WriteLine(velocity.length);
-        //velocity -= 0.007f * velocity;
+        velocity -= ((Level)game.Currentscene).resistance * velocity;
         base.applyVelocity();
     }
 
     public override void Update()
     {
+        if (velocity.length > 200f)
+        {
+            body.rotation = velocity.angleDeg + 90;
+        }
+
         if (deadTimer != null)
         {
-
             if (deadTimer.done)
                 LateRemove();
         }
-
-        base.Update();
+        if (game.Currentscene is Level)
+        {
+            base.Update();
+        }
+        
 
         if (Input.GetKeyDown(Key.S))
         {
-            Destroy();
+            LateRemove();
         }
     }
 
@@ -72,11 +86,11 @@ class Ball : PhysicsCircle
     {
         if (deadTimer == null)
         {
-            deadTimer = new Timer(0.05f);
+            deadTimer = new Timer(0.01f);
             AddChild(deadTimer);
+            //LateRemove();
+            parent.recieveMessage("dead");
         }
-
-        SetColor(System.Drawing.Color.Red);
     }
 }
 

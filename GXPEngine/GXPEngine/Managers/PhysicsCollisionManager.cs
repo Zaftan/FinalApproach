@@ -82,7 +82,7 @@ namespace GXPEngine.Managers
 				i++;
 				checkAllCollisions();
 
-				if (i > 200)
+				if (i > 50)
 				{
 					break;
 				}

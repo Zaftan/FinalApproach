@@ -62,7 +62,7 @@ public class ControlButton : Button
 
 public class Button : AnimationSprite
 {
-    private Canvas overlay;
+   //private Canvas overlay;
     protected string text;
 
     public Button(float inpX, float inpY, string txt, string path = "button.png", int cols = 1) : base(Settings.ASSET_PATH + "Art/" + path, cols, 1, cols, false)
@@ -82,7 +82,7 @@ public class Button : AnimationSprite
     {
     }
 
-    public void Update()
+    public virtual void Update()
     {
         //var _newFont = new Font("Pangolin", 15);
         //overlay.graphics.Clear(Color.Empty);
