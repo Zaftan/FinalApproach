@@ -53,7 +53,7 @@ public class Star : PhysicsCircle
             ((Level)game.Currentscene).stars++;
             body.SetCycle(14, 7, 5);
             active = false;
-            new Sound(Settings.ASSET_PATH + "SFX/Star1.wav").Play(false, 0, 10, 0);
+            new Sound(Settings.ASSET_PATH + "SFX/Star1.wav").Play(false, 0, Settings.sfxVolume, 0);
         }
     }
 }

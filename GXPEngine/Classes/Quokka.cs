@@ -46,7 +46,7 @@ class Quokka : PhysicsCircle
         if (velocity.length > 100f)
         {
             body.SetFrame(Utils.Random(1, 3));
-            //new Sound(Settings.ASSET_PATH + "SFX/Bouncing.wav").Play(false, 0, 10, 0);
+            
         }
     }
 

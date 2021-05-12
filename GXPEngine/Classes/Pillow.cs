@@ -9,6 +9,7 @@ using GXPEngine;
 public class Pillow : Placable
 {
     AnimationSprite body;
+    Timer soundTimer;
 
     public Pillow() : base(new Vector2(0, 0))
     {
@@ -24,13 +25,22 @@ public class Pillow : Placable
         mainCollider.bouncyness = -100;
         //matress.SetColor(System.Drawing.Color.Green);
         PhysicsObjects.Add(mainCollider);
+        soundTimer = new Timer(2f);
+        soundTimer.Stop();
+        soundTimer.done = true;
+        AddChild(soundTimer);
     }
 
     protected override void Collide()
     {
         body.SetFrame(1);
-        int num = Utils.Random(-1, 4);
-        new Sound(Settings.ASSET_PATH + "SFX/Pillow" + num + ".wav").Play(false, 0, 6, 0);
+
+        if (soundTimer.done)
+        {
+            int num = Utils.Random(-1, 4);
+            new Sound(Settings.ASSET_PATH + "SFX/Pillow" + num + ".wav").Play(false, 0, Settings.sfxVolume * 3f, 0);
+            soundTimer.Start();
+        }
     }
 
     protected override void Run()

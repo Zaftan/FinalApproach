@@ -42,7 +42,7 @@ public class Cannon : Sprite
         else if (body.currentFrame > 35)
         {
             ((Level)game.Currentscene).mainCam.Shake();
-            new Sound(Settings.ASSET_PATH + "SFX/Launching.wav").Play(false, 0, 2, 0);
+            new Sound(Settings.ASSET_PATH + "SFX/Launching.wav").Play(false, 0, Settings.sfxVolume/2f, 0);
             body.SetFrame(0);
         }
 

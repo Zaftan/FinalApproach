@@ -52,7 +52,7 @@ class LvSwtchButton : Button
         {
             base.click();
         }
-        new Sound(Settings.ASSET_PATH + "SFX/Button.wav").Play(false, 0, 10, 0);
+        new Sound(Settings.ASSET_PATH + "SFX/Button.wav").Play(false, 0, Settings.sfxVolume, 0);
     }
 }
 
@@ -107,7 +107,7 @@ public class ResetButton : Button
     protected override void click()
     {
         game.SceneManager.Reloadscene();
-        new Sound(Settings.ASSET_PATH + "SFX/LevelRetry.wav").Play(false, 0, 10, 0);
+        new Sound(Settings.ASSET_PATH + "SFX/LevelRetry.wav").Play(false, 0, Settings.sfxVolume, 0);
     }
 }
 
@@ -129,7 +129,7 @@ public class Button : AnimationSprite
     protected virtual void click()
     {
         int num = Utils.Random(-1, 7);
-        new Sound(Settings.ASSET_PATH + "SFX/Button" + num + ".wav").Play(false, 0, 10, 0);
+        new Sound(Settings.ASSET_PATH + "SFX/Button" + num + ".wav").Play(false, 0, Settings.sfxVolume, 0);
     }
 
     public virtual void Update()

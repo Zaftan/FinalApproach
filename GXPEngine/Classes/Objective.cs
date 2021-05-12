@@ -40,7 +40,7 @@ class Objective : PhysicsRectangle
                 rocket.y -= 2;
                 if (played == false)
                 {
-                    new Sound(Settings.ASSET_PATH + "SFX/Rocket.wav").Play(false, 0, 10, 0);
+                    new Sound(Settings.ASSET_PATH + "SFX/Rocket.wav").Play(false, 0, Settings.sfxVolume, 0);
                     played = true;
                 }
             }
@@ -76,7 +76,7 @@ class Objective : PhysicsRectangle
                 deadTimer = new Timer(0.1f);
                 
                 AddChild(deadTimer);
-                new Sound(Settings.ASSET_PATH + "SFX/LevelWin.wav").Play(false, 0, 10, 0);
+                new Sound(Settings.ASSET_PATH + "SFX/LevelWin.wav").Play(false, 0, Settings.sfxVolume, 0);
             }
         }
     }

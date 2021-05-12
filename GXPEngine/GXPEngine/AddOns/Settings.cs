@@ -28,7 +28,7 @@ namespace GXPEngine {
 		public static string SettingsFileName = "settings.txt"; // should be in bin/Debug or bin/Release. Use "MySubFolder/settings.txt" for subfolders.
 		public static bool ShowSettingsParsing = false;  // If true, settings parsing progress is printed to console
 		public static bool ThrowExceptionOnMissingSetting = true;
-		public static int volume = 10;
+		public static float sfxVolume = 3f;
 
 		// Resolution values - use these when creating a new MyGame instance:
 		// (Note: for the arcade machine, use ScreenResolutionX,Y = 1600,1200)

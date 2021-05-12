@@ -26,7 +26,7 @@ public class MyGame : Game
 		_sceneManager.addscene(new Level3());
 		_sceneManager.addscene(new Menu());
 
-		soundChannel = new Sound(Settings.ASSET_PATH + "SFX/MenuTheme.wav").Play(false, 0, sc.volume, 0);
+		soundChannel = new Sound(Settings.ASSET_PATH + "SFX/MenuTheme.wav").Play(false, 0, sc.volume/2f, 0);
 
 		
 	}

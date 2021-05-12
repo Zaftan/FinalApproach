@@ -48,7 +48,7 @@ class Plank : Placable
 
     protected override void Collide()
     {
-        //
+        new Sound(Settings.ASSET_PATH + "SFX/Bouncing.wav").Play(false, 0, Settings.sfxVolume, 0);
     }
 
     protected override void Run()
