@@ -20,7 +20,10 @@ class MetalWall : GameObject
         build(length);
 
         rect = new PhysicsRectangle(width, height, pX + width/2, pY + height/2);
-        //rect.SetColor(System.Drawing.Color.Green);
+        rect.SetColor(System.Drawing.Color.Black);
+        EasyDraw border = rect.FindObjectOfType<EasyDraw>();
+        border.parent = this;
+        border.SetXY(width/2 + 3, height/2);
         rect.vecRotation.angleDeg = rotation;
         rect.position.RotateAroundDegrees(rotation, new GXPEngine.Core.Vector2(x, y));
         game.Currentscene.AddChild(rect);

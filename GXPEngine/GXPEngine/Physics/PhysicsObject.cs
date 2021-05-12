@@ -77,7 +77,7 @@ namespace GXPEngine.Physics
 		{
 			if (_easyDraw == null)
 			{
-				_easyDraw = new EasyDraw(width + 2, height + 2, false);
+				_easyDraw = new EasyDraw(width + 10, height, false);
 				_easyDraw.SetOrigin(_easyDraw.width / 2, _easyDraw.height / 2);
 
 				AddChild(_easyDraw);

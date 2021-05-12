@@ -111,13 +111,14 @@ namespace GXPEngine.Physics
 
         protected override void Draw()
         {
-            draw.StrokeWeight(1);
+            draw.StrokeWeight(3);
 
             for (int i = 0; i < _positions.Count - 1; i++)
             {
                 draw.Line(_positions[i].x + width / 2, _positions[i].y + height / 2, _positions[i + 1].x + width / 2, _positions[i + 1].y + height / 2);
             }
 
+            //draw.Line(_positions[points.Count - 1].x + width / 2, points[points.Count - 1].position.y + height / 2 - 440, _positions[0].x + width / 2, _positions[0].y + height / 2);
             draw.Line(_positions[points.Count - 1].x + width / 2, points[points.Count - 1].position.y + height / 2, _positions[0].x + width / 2, _positions[0].y + height / 2);
         }
     }
