@@ -33,21 +33,6 @@ public class MyGame : Game
 
     void Update()
 	{
-
-		if (Input.GetKeyDown(Key.R))
-		{
-			game.SceneManager.Reloadscene();
-		}
-		if (Input.GetKeyDown(Key.RIGHT))
-		{
-			game.SceneManager.GotoNextscene();
-		}
-		if (Input.GetKeyDown(Key.LEFT))
-		{
-			game.SceneManager.GotoPreviousscene();
-		}
-
-		//Console.WriteLine("FPS: " + currentFps);
 		soundChannel.Volume = sc.volume;
 
 		AddChildAt(mouse, 100);

@@ -66,7 +66,7 @@ public class Level2 : Level
         resistance = 0.006f;
         window.SetXY(102f, 200f);
         window.scale = 1.07f;
-        plankStock = springStock = pillowStock = 5;
+        plankStock = springStock = pillowStock = 6;
     }
 
     public override void onLoad()
@@ -87,7 +87,6 @@ public class Level2 : Level
         AddChild(new MetalWall(1, 1160, 80));
         AddChild(new Laser(1173, 170));
         AddChild(new Star(1300, 300));
-
 
         base.onLoad();
 
