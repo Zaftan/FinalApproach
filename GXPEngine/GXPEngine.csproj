@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\PopUp.cs" />
     <Compile Include="Classes\Quokka.cs" />
     <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Cannon.cs" />
