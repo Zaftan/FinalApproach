@@ -29,7 +29,8 @@ public class Pillow : Placable
     protected override void Collide()
     {
         body.SetFrame(1);
-        new Sound(Settings.ASSET_PATH + "SFX/Pillow.wav").Play(false, 0, 10, 0);
+        int num = Utils.Random(-1, 4);
+        new Sound(Settings.ASSET_PATH + "SFX/Pillow" + num + ".wav").Play(false, 0, 10, 0);
     }
 
     protected override void Run()
