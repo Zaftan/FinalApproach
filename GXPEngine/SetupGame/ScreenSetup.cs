@@ -84,6 +84,7 @@ public class MerchScreen : Screen
 public class SettingScreen : Screen
 {
     public float volume = 5;
+    public float sfxVolume = 5;
 
     public SettingScreen() : base("Settings") { }
 
@@ -100,6 +101,16 @@ public class SettingScreen : Screen
         AddChild(new ControlButton(500, 225, "-", "Minus.png"));
         AddChild(new ControlButton(1000, 225, "+", "Plus.png"));
 
+
+        sprite = new Sprite(Settings.ASSET_PATH + "Art/SFX.png");
+
+        sprite.x = 375;
+        sprite.y = 475;
+
+        AddChild(sprite);
+        AddChild(new ControlButton(500, 625, "-SFX", "Minus.png"));
+        AddChild(new ControlButton(1000, 625, "+SFX", "Plus.png"));
+
         AddChild(new LvSwtchButton(120, 60, new Menu(), "Menu.png", 2));
         AddChild(new BackButton(120, 750));
 
@@ -110,6 +121,8 @@ public class SettingScreen : Screen
     {
         overlay.graphics.Clear(Color.Empty);
         overlay.graphics.DrawString(volume.ToString(), font, Brushes.White, 710, 210);
+
+        overlay.graphics.DrawString(sfxVolume.ToString(), font, Brushes.White, 710, 610);
     }
 
     public override void recieveMessage(string message)
@@ -139,6 +152,20 @@ public class SettingScreen : Screen
                 }
             }
         }
+
+        if (message == "-SFX")
+        {
+            sfxVolume--;
+        }
+        if (message == "+SFX")
+        {
+            sfxVolume++;
+        }
+
+        if (sfxVolume < 0) sfxVolume = 0;
+        if (sfxVolume > 10) sfxVolume = 10;
+
+        Settings.sfxVolume = sfxVolume / 2f;
     }
 }
 
