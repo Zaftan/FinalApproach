@@ -51,7 +51,7 @@ public class Level3 : Level
         
         base.onLoad();
 
-        AddChild(new Objective(125, 125, 1375, 750, "settings"));
+        AddChild(new Objective(125, 125, 1175, 750, "settings"));
         rocket.SetXY(1275, 650);
 
     }
@@ -91,8 +91,8 @@ public class Level2 : Level
 
         base.onLoad();
 
-        AddChild(new Objective(125, 125, 1375, 750, "settings"));
-        rocket.SetXY(1275, 650);
+        AddChild(new Objective(125, 125, 1175, 750, "settings"));
+        rocket.SetXY(1075, 650);
     }
 }
 
@@ -124,6 +124,7 @@ public class Level1 : Level
 
         base.onLoad();
 
+        AddChild(new PopUp(width/2, height/2));
         AddChild(new Objective(125, 125, 1375, 750, "settings"));
         rocket.SetXY(1275, 650);
     }
