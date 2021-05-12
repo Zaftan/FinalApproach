@@ -30,7 +30,7 @@ public class Pillow : Placable
     {
         body.SetFrame(1);
         int num = Utils.Random(-1, 4);
-        new Sound(Settings.ASSET_PATH + "SFX/Pillow" + num + ".wav").Play(false, 0, 10, 0);
+        new Sound(Settings.ASSET_PATH + "SFX/Pillow" + num + ".wav").Play(false, 0, 6, 0);
     }
 
     protected override void Run()
