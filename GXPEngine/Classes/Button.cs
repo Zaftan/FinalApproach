@@ -43,6 +43,7 @@ class LvSwtchButton : Button
 
     protected override void click()
     {
+        base.click();
         if (nextLevel != null)
         {
             game.SceneManager.SetScene(nextLevel);
@@ -68,7 +69,6 @@ public class ControlButton : Button
     {
         base.click();
         parent.recieveMessage(message);
-        new Sound(Settings.ASSET_PATH + "SFX/Button.wav").Play(false, 0, 10, 0);
     }
 }
 
@@ -80,6 +80,7 @@ public class BackButton : Button
 
     protected override void click()
     {
+        base.click();
         game.SceneManager.GotoPreviousscene();
     }
 }
@@ -92,6 +93,7 @@ public class StopButton : Button
 
     protected override void click()
     {
+        base.click();
         game.LateDestroy();
     }
 }
@@ -126,7 +128,8 @@ public class Button : AnimationSprite
 
     protected virtual void click()
     {
-        //
+        int num = Utils.Random(-1, 7);
+        new Sound(Settings.ASSET_PATH + "SFX/Button" + num + ".wav").Play(false, 0, 10, 0);
     }
 
     public virtual void Update()
