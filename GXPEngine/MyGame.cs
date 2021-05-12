@@ -15,7 +15,6 @@ public class MyGame : Game
 		targetFps = 60;
 
 		mouse = new Mouse();
-		AddChildAt(mouse, 100);
 		sc = new SettingScreen();
 
 		_sceneManager.addscene(new Menu());
@@ -25,8 +24,11 @@ public class MyGame : Game
 		_sceneManager.addscene(new Level1());
 		_sceneManager.addscene(new Level2());
 		_sceneManager.addscene(new Level3());
+		_sceneManager.addscene(new Menu());
 
 		soundChannel = new Sound(Settings.ASSET_PATH + "SFX/MenuTheme.wav").Play(false, 0, sc.volume, 0);
+
+		
 	}
 
     void Update()
@@ -47,7 +49,8 @@ public class MyGame : Game
 
 		//Console.WriteLine("FPS: " + currentFps);
 		soundChannel.Volume = sc.volume;
-		Console.WriteLine(soundChannel.Volume);
+
+		AddChildAt(mouse, 100);
 	}
 
 	static void Main()							// Main() is the first method that's called when the program is run

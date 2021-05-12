@@ -25,7 +25,7 @@ public class Cannon : Sprite
 
         PhysicsRectangle rect = new PhysicsRectangle(body.width, body.height, new Vector2(x, y));
         //rect.SetColor(System.Drawing.Color.Red);
-        game.Currentscene.AddChild(rect);
+        //game.Currentscene.AddChild(rect);
 
         game.Currentscene.AddChildAt(body, 100);
     }
@@ -36,11 +36,13 @@ public class Cannon : Sprite
         {
             body.Animate();
             quokka.position.SetXY(x, y + 50);
+            quokka.velocity = new Vector2(0, 1500f);
+            quokka.vecRotation.angleDeg = 0;
         }
         else if (body.currentFrame > 35)
         {
             ((Level)game.Currentscene).mainCam.Shake();
-
+            new Sound(Settings.ASSET_PATH + "SFX/Launching.wav").Play(false, 0, 10, 0);
             body.SetFrame(0);
         }
 
@@ -52,7 +54,6 @@ public class Cannon : Sprite
             game.Currentscene.AddChildAt(quokka, 10);
 
             body.SetFrame(1);
-            new Sound(Settings.ASSET_PATH + "SFX/Launching.wav").Play(false, 0, 10, 0);
         }
     }
 }

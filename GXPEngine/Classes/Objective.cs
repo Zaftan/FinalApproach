@@ -11,30 +11,33 @@ class Objective : PhysicsRectangle
 {
     //Level2 lvl2 = new Level2();
     AnimationSprite rocket;
-    SceneManager _sceneManager;
+    //SceneManager _sceneManager;
     Timer deadTimer;
     string dest;
     bool played = false;
+    int startX;
 
     public Objective(int width, int height, int x, int y, string destination) : base(width, height, x, y)
     {
         trigger = true;
         //SetColor(System.Drawing.Color.Green);
         dest = destination;
-
+        
         rocket = ((Level)game.Currentscene).rocket;
+        
     }
 
     public override void Update()
     {
         base.Update();
 
+
         if (deadTimer != null)
         {
             rocket.Animate();
-            if (rocket.y >= 100)
+            if (rocket.y >= -50)
             {
-                rocket.y--;
+                rocket.y -= 2;
                 if (played == false)
                 {
                     new Sound(Settings.ASSET_PATH + "SFX/Rocket.wav").Play(false, 0, 10, 0);
@@ -44,14 +47,21 @@ class Objective : PhysicsRectangle
 
             if (rocket.currentFrame >= 11)
             {
+                rocket.y -= 1;
                 rocket.SetCycle(13, 18);
+                rocket.x = startX;
+                rocket.x += Utils.Random(0, 10) - 5;
             }
 
-            if (rocket.y <= 100)
+            if (rocket.y <= -50)
             {
                 LateRemove();
                 game.SceneManager.GotoNextscene();
             }
+        }
+        else 
+        {
+            startX = (int)rocket.x;
         }
     }
 

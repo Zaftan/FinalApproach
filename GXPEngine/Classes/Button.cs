@@ -141,6 +141,8 @@ public class Button : AnimationSprite
             //overlay.y = 0;
             //overlay.x = 0;
 
+            ((MyGame)game).mouse.hovering = true;
+
             if (Input.GetMouseButtonDown(0))
             {
                 click();
