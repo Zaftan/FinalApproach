@@ -58,7 +58,7 @@ namespace GXPEngine.Physics
 
             // get the length of the line
             float lineLen = line.lineVector.length;
-            float buffer = 0.1f;    // higher # = less accurate
+            float buffer = 0.3f;    // higher # = less accurate
 
             if (d1 + d2 >= lineLen - buffer && d1 + d2 <= lineLen + buffer)
             {

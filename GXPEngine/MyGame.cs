@@ -7,41 +7,35 @@ using GXPEngine;                                // GXPEngine contains the engine
 public class MyGame : Game
 {
 	public SoundChannel soundChannel;
-	public int volume = 10;
 	public Mouse mouse;
+	public SettingScreen sc;
 
-	public MyGame() : base(960, 540, false, false)
+	public MyGame() : base(1440, 810, false, false)
 	{
 		targetFps = 60;
 
 		mouse = new Mouse();
-		AddChild(mouse);
+		sc = new SettingScreen();
 
-		_sceneManager.addscene(new menu());
-		_sceneManager.addscene(new settings());
-		_sceneManager.addscene(new EngineTest());
+		_sceneManager.addscene(new Menu());
+		_sceneManager.addscene(sc);
+		_sceneManager.addscene(new MerchScreen());
+		_sceneManager.addscene(new Comic());
+		_sceneManager.addscene(new Level1());
+		_sceneManager.addscene(new Level2());
+		_sceneManager.addscene(new Level3());
+		_sceneManager.addscene(new Menu());
 
-		_sceneManager.addscene(new Level("Temp"));
+		soundChannel = new Sound(Settings.ASSET_PATH + "SFX/MenuTheme.wav").Play(false, 0, sc.volume/3f, 0);
+
+		
 	}
 
     void Update()
 	{
+		soundChannel.Volume = sc.volume;
 
-		if (Input.GetKeyDown(Key.R))
-		{
-			game.SceneManager.Reloadscene();
-		}
-		if (Input.GetKeyDown(Key.RIGHT))
-		{
-			game.SceneManager.GotoNextscene();
-		}
-		if (Input.GetKeyDown(Key.LEFT))
-		{
-			game.SceneManager.GotoPreviousscene();
-		}
-
-		//Console.WriteLine("FPS: " + currentFps);
-		soundChannel = new Sound(".mp3").Play(false, 0, volume, 0);
+		AddChildAt(mouse, 100);
 	}
 
 	static void Main()							// Main() is the first method that's called when the program is run

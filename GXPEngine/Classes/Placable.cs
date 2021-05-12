@@ -11,14 +11,12 @@ public abstract class Placable : GameObject
     protected List<PhysicsObject> PhysicsObjects;
     public int width = 0;
     public int height = 0;
-
-    private bool movable = true;
+    public PhysicsRectangle mainCollider;
 
     Vector2 oldPos;
     Vector2 position;
 
-    Vector2 oldRotation;
-    Vector2 vecRotation;
+    float oldRotation;
 
     public Placable(Vector2 pPosition) : base(false)
     {
@@ -35,18 +33,37 @@ public abstract class Placable : GameObject
         {
             physicsObject.parent = parent;
             physicsObject.position += (position - oldPos);
-            physicsObject.vecRotation.angleDeg = rotation;
+            physicsObject.vecRotation.RotateDegrees(rotation - oldRotation);
+            physicsObject.position.RotateAroundDegrees(rotation - oldRotation, position);
         }
 
         if (Input.GetMouseButtonDown(0) && IsInside(Input.mouseX, Input.mouseY))
         {
             ((MyGame)game).mouse.recieve(this);
         }
-
         oldPos = position;
+        oldRotation = rotation;
     }
 
-    protected abstract void Run();
+    public override void Destroy()
+    {
+        base.Destroy();
+
+        foreach (PhysicsObject physicsObject in PhysicsObjects)
+        {
+            physicsObject.Destroy();
+        }
+    }
+
+    protected virtual void Run()
+    {
+        if (mainCollider.collided)
+        {
+            Collide();
+        }
+    }
+
+    protected abstract void Collide();
 
     protected void Update()
     {
@@ -60,10 +77,10 @@ public abstract class Placable : GameObject
 
     private bool IsInside(int pX, int pY)
     {
-        int rx = (int)x - width;
-        int ry = (int)y - height;
-        int rw = (int)width * 2;
-        int rh = (int)height * 2;
+        int rx = (int)x - width/2;
+        int ry = (int)y - height/2;
+        int rw = (int)width;
+        int rh = (int)height;
 
         if (pX >= rx &&         // right of the left edge AND
         pX <= rx + rw &&    // left of the right edge AND

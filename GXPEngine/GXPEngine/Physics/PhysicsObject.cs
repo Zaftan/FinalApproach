@@ -19,7 +19,9 @@ namespace GXPEngine.Physics
 		public Vector2 vecRotation;
 		public Vector2 velocity;
 		public Vector2 acceleration;
-		public float bouncyness = 0.5f;
+		public float bouncyness = 0.0f;
+		public bool trigger = false;
+
 		public virtual bool moving
 		{
 			get { return velocity.length > 0; }
@@ -42,13 +44,13 @@ namespace GXPEngine.Physics
 		{
 			get { return _easyDraw; }
 		}
-		protected Level _currentScene
+		protected Scene _currentScene
 		{
-			get { return (Level)game.Currentscene; }
+			get { return game.Currentscene; }
 		}
 
-		private int _width;
-		private int _height;
+		protected int _width;
+		protected int _height;
 		private EasyDraw _easyDraw;
 
 		public PhysicsObject(int pWidth, int pHeight, Vector2 pPosition) : base(false)
@@ -75,7 +77,7 @@ namespace GXPEngine.Physics
 		{
 			if (_easyDraw == null)
 			{
-				_easyDraw = new EasyDraw(width, height, false);
+				_easyDraw = new EasyDraw(width + 10, height, false);
 				_easyDraw.SetOrigin(_easyDraw.width / 2, _easyDraw.height / 2);
 
 				AddChild(_easyDraw);
@@ -123,7 +125,12 @@ namespace GXPEngine.Physics
 
 			if (outp)
 			{
-				Collide(other);
+				other.Collide(this);
+
+				if (!other.trigger)
+				{
+					 Collide(other);
+				}
 			}
 
 			return outp;
@@ -172,9 +179,9 @@ namespace GXPEngine.Physics
 
 		protected virtual void setAccelleration()
 		{
-			if (effectedByGravity)
+			if (effectedByGravity && _currentScene is Level)
 			{
-				acceleration += _currentScene.gravity;
+				acceleration += ((Level)_currentScene).gravity;
 			}
 		}
 	}

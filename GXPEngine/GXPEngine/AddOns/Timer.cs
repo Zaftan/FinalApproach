@@ -7,39 +7,44 @@ using GXPEngine;
 class Timer : GameObject
 {
     public float maxSeconds;
-    float second;
-    int framesCounter;
+    float miniSeconds;
     bool active;
     public bool done;
 
     public float seconds
     {
-        get { return second; }
+        get { return miniSeconds/1000; }
     }
 
     public Timer() : base()
     {
-        start();
+        Start();
     }
 
     public Timer(float setMaxSeconds) : base()
     {
         maxSeconds = setMaxSeconds;
-        start();
+        Start();
     }
 
-    public void start()
+    public void Start()
     {
         done = false;
-        second = 0;
-        framesCounter = 0;
+        miniSeconds = 0;
         active = true;
     }
 
-    public void stop()
+    public void Start(float maxSecs)
     {
-        second = 0;
-        framesCounter = 0;
+        done = false;
+        miniSeconds = 0;
+        maxSeconds = maxSecs;
+        active = true;
+    }
+
+    public void Stop()
+    {
+        miniSeconds = 0;
         active = false;
     }
 
@@ -47,19 +52,11 @@ class Timer : GameObject
     {
         if (active)
         {
-            if (framesCounter >= 3)
-            {
-                framesCounter = 0;
-                second += 0.05f;
-            }
-            else
-            {
-                framesCounter++;
-            }
+            miniSeconds += Time.deltaTime;
 
             if (seconds >= maxSeconds && maxSeconds != -1)
             {
-                stop();
+                Stop();
                 done = true;
             }
         }

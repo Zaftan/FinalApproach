@@ -3,42 +3,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GXPEngine.Physics;
-using GXPEngine.Core;
 using GXPEngine;
 
 public class Spring : Placable
 {
-    private PhysicsRectangle spring;
-    private PhysicsLine right;
-    private PhysicsLine bottem;
-    private PhysicsLine left;
+    AnimationSprite body;
 
-    public Spring(int pWidth, int pHeight, int pX, int pY) : base(new Vector2(pX, pY))
+    public Spring() : base(new GXPEngine.Core.Vector2(0, 0))
     {
-        width = pWidth;
-        height = pHeight;
+        body = new AnimationSprite(Settings.ASSET_PATH + "Art/spring.png", 6, 2, 12, false, false);
+        width = body.width;
+        height = body.height;
+        body.SetOrigin(body.width / 2, body.height / 2);
+        body.SetCycle(0, 12, 0);
 
-        SetXY(pX, pY);
+        AddChild(body);
 
-        left = new PhysicsLine(-width / 2, -height / 2, -width / 2, height);
-        left.SetColor(System.Drawing.Color.Green);
+        PhysicsRectangle left = new PhysicsRectangle(2, height, -width / 2, 0);
+        //left.SetColor(System.Drawing.Color.Green);
+        left.vecRotation.angleDeg = 180f;
         PhysicsObjects.Add(left);
 
-        bottem = new PhysicsLine(- width / 2, height, width / 2, height);
-        bottem.SetColor(System.Drawing.Color.Green);
-        PhysicsObjects.Add(bottem);
-
-        right = new PhysicsLine(width / 2, height, width / 2, -height / 2);
-        right.SetColor(System.Drawing.Color.Green);
+        PhysicsRectangle right = new PhysicsRectangle(2, height, width / 2, 0);
+        //right.SetColor(System.Drawing.Color.Pink);
         PhysicsObjects.Add(right);
 
-        spring = new PhysicsRectangle(pWidth - 12, pHeight, new Vector2(-2, 0));
-        spring.bouncyness = 1f;
-        spring.SetColor(System.Drawing.Color.Red);
-        PhysicsObjects.Add(spring);
+        mainCollider = new PhysicsRectangle(width - 4, height + 5, 0, 0);
+        mainCollider.bouncyness = 0.60f;
+        //spring.SetColor(System.Drawing.Color.Red);
+        PhysicsRectangle spring2 = new PhysicsRectangle(width - 14, height - 10, 0, 0);
+        spring2.bouncyness = 0.60f;
+        //PhysicsObjects.Add(spring2);
+        PhysicsObjects.Add(mainCollider);
+    }
+
+    protected override void Collide()
+    {
+        body.SetFrame(1);
+        new Sound(Settings.ASSET_PATH + "SFX/SpringJump.wav").Play(false, 0, Settings.sfxVolume, 0);
     }
 
     protected override void Run()
     {
+        base.Run();
+
+        if (body.currentFrame > 0)
+        {
+            body.Animate();
+        }
     }
 }

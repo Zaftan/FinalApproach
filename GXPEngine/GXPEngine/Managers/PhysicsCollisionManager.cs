@@ -24,7 +24,7 @@ namespace GXPEngine.Managers
 				{
 					if (physicsObject.Colliding(other))
 					{
-						break;
+						//break;
 					}
 				}
 			}
@@ -82,7 +82,7 @@ namespace GXPEngine.Managers
 				i++;
 				checkAllCollisions();
 
-				if (i > 200)
+				if (i > 50)
 				{
 					break;
 				}

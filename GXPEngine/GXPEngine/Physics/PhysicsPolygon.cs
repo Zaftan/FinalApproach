@@ -44,7 +44,7 @@ namespace GXPEngine.Physics
                 if (pointX > max) max = pointX;
             }
 
-            return max - min +4;
+            return max - min + 4;
         }
 
         private static int calculateHeight(List<Vector2> pPoints)
@@ -87,10 +87,10 @@ namespace GXPEngine.Physics
 
             for (int i = 0; i < points.Count - 1; i++)
             {
-                outP.Add(new PhysicsLine(points[i].position, points[i + 1].position, bouncyness));
+                outP.Add(new PhysicsLine(points[i].position, points[i + 1].position, bouncyness, trigger));
             }
 
-            outP.Add(new PhysicsLine(points[points.Count - 1].position, points[0].position, bouncyness));
+            outP.Add(new PhysicsLine(points[points.Count - 1].position, points[0].position, bouncyness, trigger));
 
             return outP;
         }
@@ -111,14 +111,15 @@ namespace GXPEngine.Physics
 
         protected override void Draw()
         {
-            draw.StrokeWeight(1);
+            draw.StrokeWeight(3);
 
             for (int i = 0; i < _positions.Count - 1; i++)
             {
-               draw.Line(_positions[i].x + width / 2 +1, _positions[i].y + height / 2 + 1, _positions[i + 1].x + width / 2 + 1, _positions[i + 1].y + height / 2 + 1);
+                draw.Line(_positions[i].x + width / 2, _positions[i].y + height / 2, _positions[i + 1].x + width / 2, _positions[i + 1].y + height / 2);
             }
 
-            draw.Line(_positions[points.Count - 1].x + width / 2 + 1, points[points.Count - 1].position.y + height / 2 + 1, _positions[0].x + width / 2 + 1, _positions[0].y + height / 2 + 1);
+            //draw.Line(_positions[points.Count - 1].x + width / 2, points[points.Count - 1].position.y + height / 2 - 440, _positions[0].x + width / 2, _positions[0].y + height / 2);
+            draw.Line(_positions[points.Count - 1].x + width / 2, points[points.Count - 1].position.y + height / 2, _positions[0].x + width / 2, _positions[0].y + height / 2);
         }
     }
 }

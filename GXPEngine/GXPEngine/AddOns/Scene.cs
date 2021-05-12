@@ -36,7 +36,7 @@ namespace GXPEngine
         public virtual void onLoad()
         {
             _loaded = true;
-            game.LateAddChild(this);
+            game.LateAddChildAt(this, 1);
         }
 
         public virtual void onLeave()
